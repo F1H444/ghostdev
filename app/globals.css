@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+:root {
+  --background: #09090b;
+  --foreground: #ffffff;
+}
+
+@layer base {
+  body {
+    background-color: #09090b;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+.noise-filter {
+  filter: url(#noiseFilter);
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .mask-hidden {
+    clip-path: inset(100% 0 0 0);
+  }
+  
+  .mask-visible {
+    clip-path: inset(0 0 0 0);
+    transition: clip-path 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
