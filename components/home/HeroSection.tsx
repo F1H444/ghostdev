@@ -12,26 +12,19 @@ const containerVariants: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.8,
+      staggerChildren: 0.05,
+      delayChildren: 0.5,
     }
   }
 };
 
 const charVariants: Variants = {
-  hidden: { 
-    y: 50, 
-    opacity: 0, 
-    filter: "blur(20px)",
-    scale: 0.8
-  },
+  hidden: { y: "100%", opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
-    filter: "blur(0px)",
-    scale: 1,
     transition: {
-      duration: 1.2,
+      duration: 1.5,
       ease: [0.16, 1, 0.3, 1]
     }
   }
@@ -41,87 +34,59 @@ export function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section ref={containerRef} className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Dynamic Floating Geometry for Hero Only */}
-      <div className="absolute inset-0 pointer-events-none">
-        <motion.div 
-          animate={{ 
-            rotate: [0, 90],
-            scale: [1, 1.1, 1],
-            opacity: [0.03, 0.08, 0.03]
-          }}
-          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-          className="absolute -top-20 -left-20 w-96 h-96 border border-white/10 rounded-full"
-        />
-        <motion.div 
-          animate={{ 
-            rotate: [0, -45],
-            x: [0, 50, 0],
-            opacity: [0.02, 0.05, 0.02]
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-10 right-10 w-64 h-64 border border-white/10"
-        />
-      </div>
+    <section ref={containerRef} className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden py-32">
 
-      <motion.div 
-        className="w-full max-w-7xl px-8 flex flex-col items-center justify-center relative z-10"
-      >
+      <div className="relative z-10 w-full max-w-5xl px-8 flex flex-col items-center text-center">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="flex overflow-hidden"
+          className="flex justify-center overflow-hidden mb-8 whitespace-nowrap"
         >
           {characters.map((char, i) => (
-            <span key={i} className="inline-block px-1">
+            <div key={i} className="overflow-hidden">
               <motion.span
                 variants={charVariants}
-                className="text-[14vw] md:text-[10vw] font-black text-white leading-none tracking-tighter inline-block will-change-[transform,filter,opacity]"
+                className="text-[12vw] font-black text-white leading-[0.9] tracking-tighter inline-block"
               >
                 {char}
               </motion.span>
-            </span>
+            </div>
           ))}
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          transition={{ delay: 1.8, duration: 1.2 }}
-          className="mt-8 flex flex-col items-center gap-12"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2, duration: 1 }}
+          className="max-w-2xl space-y-10 flex flex-col items-center"
         >
-          <div className="flex items-center gap-4">
-            <div className="w-8 h-[1px] bg-zinc-800" />
-            <p className="text-zinc-500 font-mono text-xs uppercase tracking-[0.6em]">
-              Arsitek Digital Sunyi // 2026
-            </p>
-            <div className="w-8 h-[1px] bg-zinc-800" />
-          </div>
+          <h2 className="text-xl md:text-3xl text-zinc-400 font-medium tracking-tight leading-tight">
+            Partner Rahasia untuk <span className="text-white">UKK, Programming,</span> & <span className="text-white">Solusi Teknik</span> Berkelas Dunia.
+          </h2>
 
-          <div className="flex gap-8">
-            <Magnetic strength={0.25}>
-              <a href="#work" className="group relative h-12 px-10 flex items-center justify-center overflow-hidden border border-white/10 rounded-full transition-colors hover:border-white/40">
-                <span className="relative z-10 text-xs font-bold uppercase tracking-widest text-zinc-400 group-hover:text-white transition-colors">
-                  Karya Terpilih
-                </span>
-                <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+          <div className="flex flex-col sm:flex-row gap-6">
+            <Magnetic strength={0.3}>
+              <a 
+                href="https://wa.me/6281216802722" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="group relative h-14 px-12 flex items-center justify-center overflow-hidden bg-white rounded-full transition-all hover:scale-105"
+              >
+                <span className="relative z-10 text-[10px] font-bold uppercase tracking-widest text-black">Joki Sekarang</span>
+              </a>
+            </Magnetic>
+            <Magnetic strength={0.3}>
+              <a 
+                href="#work" 
+                className="group relative h-14 px-12 flex items-center justify-center overflow-hidden border border-white/20 rounded-full transition-all hover:border-white/50"
+              >
+                <span className="relative z-10 text-[10px] font-bold uppercase tracking-widest text-zinc-400 group-hover:text-white transition-all">Lihat Karya</span>
               </a>
             </Magnetic>
           </div>
         </motion.div>
-
-        {/* Minimalist Vertical Scroll Indicator */}
-        <div className="absolute bottom-12 flex flex-col items-center gap-6">
-          <div className="w-[1px] h-16 bg-gradient-to-b from-zinc-800 to-transparent relative overflow-hidden">
-            <motion.div 
-              animate={{ y: ["-100%", "100%"] }}
-              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-              className="absolute top-0 left-0 w-full h-1/2 bg-white"
-            />
-          </div>
-        </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

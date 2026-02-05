@@ -6,7 +6,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full pt-20 pb-12 px-6 border-t border-white/5">
+    <footer className="w-full pt-12 pb-12 px-6 border-t border-white/5">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-24">
           <div className="md:col-span-2">
@@ -48,9 +48,9 @@ export function Footer() {
       </div>
 
       {/* Massive Brand Watermark */}
-      <div className="mt-20 overflow-hidden pointer-events-none select-none opacity-[0.02]">
-        <h2 className="text-[25vw] font-black leading-none tracking-tighter text-white whitespace-nowrap">
-          GHOSTDEV GHOSTDEV
+      <div className="mt-12 overflow-hidden pointer-events-none select-none opacity-[0.02] flex justify-center">
+        <h2 className="text-[15vw] font-black leading-none tracking-tighter text-white whitespace-nowrap">
+          GHOSTDEV
         </h2>
       </div>
     </footer>

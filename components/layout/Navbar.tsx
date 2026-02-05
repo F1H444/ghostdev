@@ -50,11 +50,12 @@ export function Navbar() {
 
         <Magnetic strength={0.3}>
           <a
-            href="#contact"
-            onClick={(e) => handleScroll(e, '#contact')}
+            href="https://wa.me/6281216802722"
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden md:block bg-white text-black text-sm font-semibold px-5 py-2 rounded-full hover:bg-zinc-200 transition-colors"
           >
-            Start Project
+            Joki Tugasmu
           </a>
         </Magnetic>
       </nav>

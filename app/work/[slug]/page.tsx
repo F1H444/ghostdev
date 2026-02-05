@@ -35,8 +35,8 @@ export default function ProjectPage() {
         </Link>
 
         {/* Header */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-24 items-end mb-32">
-          <div>
+        <div className="mb-32">
+          <div className="mb-16">
             <motion.p 
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -48,11 +48,9 @@ export default function ProjectPage() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-6xl md:text-9xl font-black text-white tracking-tighter leading-none"
+              className="text-7xl md:text-[12vw] font-black text-white tracking-tighter leading-none"
             >
-              {project.title.split(" ").map((word, i) => (
-                <span key={i} className="block">{word}</span>
-              ))}
+              {project.title}
             </motion.h1>
           </div>
           <div className="flex flex-col gap-12">
@@ -62,13 +60,13 @@ export default function ProjectPage() {
                transition={{ delay: 0.5 }}
                className="space-y-6"
             >
-               <p className="text-zinc-500 text-lg leading-relaxed max-w-sm">
-                 Sebuah solusi digital mutakhir yang menggabungkan estetika minimalis dengan performa tanpa kompromi. Dirancang untuk masa depan industri {project.category.toLowerCase()}.
+               <p className="text-zinc-500 text-lg leading-relaxed max-w-xl">
+                 Solusi teknis presisi untuk tantangan akademik Anda. Proyek {project.title} dirancang untuk memenuhi standar kompetensi industri {project.category.toLowerCase()}.
                </p>
                <div className="flex gap-4">
                   <Magnetic strength={0.3}>
-                    <a href="#" className="flex items-center gap-3 px-8 py-4 bg-white rounded-full transition-transform">
-                      <span className="text-black font-bold text-xs uppercase tracking-widest">Kunjungi Situs</span>
+                    <a href="https://wa.me/6281216802722" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 px-8 py-4 bg-white rounded-full transition-transform hover:scale-105">
+                      <span className="text-black font-bold text-xs uppercase tracking-widest">Joki Sekarang</span>
                       <ExternalLink size={14} className="text-black" />
                     </a>
                   </Magnetic>
@@ -77,50 +75,59 @@ export default function ProjectPage() {
           </div>
         </div>
 
-        {/* Hero Image */}
+        {/* Project Image - Supports Long Vertical Screenshots */}
         <motion.div 
-           initial={{ opacity: 0, scale: 0.95 }}
-           animate={{ opacity: 1, scale: 1 }}
+           initial={{ opacity: 0, y: 40 }}
+           whileInView={{ opacity: 1, y: 0 }}
+           viewport={{ once: true }}
            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-           className="relative aspect-[21/9] w-full rounded-2xl overflow-hidden border border-white/5 mb-32"
+           className="relative w-full rounded-2xl overflow-hidden border border-white/5 mb-32 bg-zinc-900/50"
         >
-           <Image src={project.image} alt={project.title} fill className="object-cover" priority />
-           <div className="absolute inset-0 bg-gradient-to-t from-[#09090b] via-transparent to-transparent opacity-40" />
+           {/* If longImage exists, we render it with auto height. Otherwise, use standard view */}
+           <div className="w-full h-full relative">
+              <img 
+                src={project.longImage || project.image} 
+                alt={project.title} 
+                className="w-full h-auto block select-none"
+                loading="lazy"
+              />
+              <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#09090b] to-transparent opacity-60 pointer-events-none" />
+           </div>
         </motion.div>
 
         {/* Specs Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-32">
            <div className="p-12 border border-white/5 rounded-3xl bg-white/[0.02] hover:bg-white/[0.04] transition-colors group">
               <Cpu className="text-zinc-600 mb-8 group-hover:text-white transition-colors" size={32} />
-              <h3 className="text-white font-bold text-xl mb-4">Tech Stack</h3>
+              <h3 className="text-white font-bold text-xl mb-4">Metodologi</h3>
               <div className="flex flex-wrap gap-2">
                 {project.tech.map((t, i) => (
-                  <span key={i} className="text-zinc-500 font-mono text-[10px] uppercase tracking-widest">{t}</span>
+                  <span key={i} className="text-zinc-500 font-mono text-[10px] uppercase tracking-widest bg-white/5 px-3 py-1 rounded-full">{t}</span>
                 ))}
               </div>
            </div>
            
            <div className="p-12 border border-white/5 rounded-3xl bg-white/[0.02] hover:bg-white/[0.04] transition-colors group">
               <Layout className="text-zinc-600 mb-8 group-hover:text-white transition-colors" size={32} />
-              <h3 className="text-white font-bold text-xl mb-4">Interface</h3>
-              <p className="text-zinc-500 text-sm">Responsif secara maksimal, berfokus pada pengalaman pengguna yang halus dan intuitif di setiap perangkat.</p>
+              <h3 className="text-white font-bold text-xl mb-4">Kualitas Output</h3>
+              <p className="text-zinc-500 text-sm leading-relaxed">Kode bersih (Clean Code), dokumentasi lengkap, dan hasil yang siap dipresentasikan di hadapan penguji UKK.</p>
            </div>
 
            <div className="p-12 border border-white/5 rounded-3xl bg-white/[0.02] hover:bg-white/[0.04] transition-colors group">
               <Boxes className="text-zinc-600 mb-8 group-hover:text-white transition-colors" size={32} />
-              <h3 className="text-white font-bold text-xl mb-4">Architecture</h3>
-              <p className="text-zinc-500 text-sm">Dibangun dengan basis kode yang bersih dan skalabel menggunakan standar industri global terbaru.</p>
+              <h3 className="text-white font-bold text-xl mb-4">Layanan Purna Tugas</h3>
+              <p className="text-zinc-500 text-sm leading-relaxed">Gratis konsultasi dan revisi ringan hingga tugas benar-benar dinyatakan lulus atau diterima oleh dosen/guru.</p>
            </div>
         </div>
 
-        {/* Content Placeholder */}
+        {/* Content Section */}
         <div className="max-w-3xl mx-auto space-y-12">
-            <h2 className="text-3xl font-bold text-white tracking-tight">Visi Eksklusif</h2>
+            <h2 className="text-3xl font-bold text-white tracking-tight">Detail Pengerjaan</h2>
             <p className="text-zinc-400 text-lg leading-relaxed">
-              Dalam pengerjaan {project.title}, GhostDev berfokus pada harmonisasi antara data dan seni visual. Kami percaya bahwa setiap baris kode harus memiliki tujuan estetika, dan setiap piksel harus memiliki fungsi teknikal yang kuat. 
+              Dalam pengerjaan {project.title}, JokiTugas.inc berfokus pada ketepatan logika dan pemenuhan kriteria penilaian. Kami memahami bahwa setiap kata dalam modul tugas sangat krusial, itulah sebabnya kami melakukan audit mendalam sebelum menyerahkan hasil akhir.
             </p>
             <p className="text-zinc-400 text-lg leading-relaxed">
-              Tantangan utama dalam proyek ini adalah bagaimana menjaga performa tetap di angka 100% sembari memberikan animasi transisi yang sinematik. Melalui optimasi GPU acceleration dan manajemen aset yang cerdas, kami berhasil melampaui standar ekspektasi klien.
+              Tantangan yang sering dihadapi adalah integrasi sistem yang kompleks dalam waktu singkat. Tim kami menggunakan boilerplate yang sudah teruji untuk mempercepat proses tanpa mengurangi kualitas esensial dari tugas tersebut.
             </p>
         </div>
       </div>

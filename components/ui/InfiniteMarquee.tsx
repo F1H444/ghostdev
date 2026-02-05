@@ -2,37 +2,40 @@
 
 import { motion } from 'framer-motion';
 
-const technologies = [
-  'Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Node.js', 'PostgreSQL',
-  'Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Node.js', 'PostgreSQL',
+const items = [
+  { text: 'WEB' },
+  { text: 'APP' },
+  { text: 'DIAGRAM' },
 ];
 
 export function InfiniteMarquee() {
   return (
-    <div className="relative w-full overflow-hidden bg-black py-10 border-y border-white/5">
+    <div className="relative w-full overflow-hidden py-12 border-y border-white/5">
       <div className="flex w-max">
         <motion.div
-          animate={{ x: [0, -1000] }}
+          animate={{ x: [0, -2000] }}
           transition={{
             repeat: Infinity,
             ease: "linear",
-            duration: 20,
+            duration: 30,
           }}
-          className="flex gap-16 px-8"
+          className="flex gap-20 items-center px-10"
         >
-          {technologies.map((tech, index) => (
-            <span key={index} className="text-4xl font-bold text-zinc-800 uppercase tracking-tighter whitespace-nowrap dark:text-zinc-800/80">
-              {tech}
-            </span>
-          ))}
-          {/* Duplicate for seamless loop */}
-          {technologies.map((tech, index) => (
-            <span key={`dup-${index}`} className="text-4xl font-bold text-zinc-800 uppercase tracking-tighter whitespace-nowrap dark:text-zinc-800/80">
-              {tech}
-            </span>
+          {[...items, ...items, ...items, ...items, ...items, ...items].map((item, index) => (
+            <div key={index} className="flex items-center gap-12">
+              <span className="text-6xl md:text-[10vw] font-black text-zinc-900 uppercase tracking-tighter whitespace-nowrap outline-text hover:text-white transition-colors duration-500">
+                {item.text}
+              </span>
+            </div>
           ))}
         </motion.div>
       </div>
+      <style jsx>{`
+        .outline-text {
+          -webkit-text-stroke: 1px rgba(255,255,255,0.1);
+          color: transparent;
+        }
+      `}</style>
     </div>
   );
 }

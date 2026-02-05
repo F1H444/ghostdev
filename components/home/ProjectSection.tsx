@@ -80,7 +80,7 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
                className="h-20 w-20 bg-white rounded-full flex items-center justify-center text-black font-black text-[10px] uppercase tracking-tighter shadow-2xl"
                data-project-info={projectInfo}
              >
-               Explore
+               Tech Stack
              </Link>
            </Magnetic>
         </div>
@@ -118,14 +118,14 @@ export function ProjectSection() {
       <div className="max-w-7xl mx-auto">
         <div className="mb-24 flex flex-col md:flex-row md:items-end justify-between gap-12">
           <div className="max-w-2xl">
-            <h2 className="text-xs font-mono text-zinc-600 uppercase tracking-[0.4em] mb-6">Arsip Pilihan</h2>
+            <h2 className="text-xs font-mono text-zinc-600 uppercase tracking-[0.4em] mb-6">Layanan Unggulan</h2>
             <h3 className="text-5xl md:text-7xl font-bold text-white tracking-tighter leading-none">
-              Manifestasi <br /> Kriya Digital.
+              Solusi Tuntas <br /> Tugas & Proyek.
             </h3>
           </div>
           <div className="hidden md:block">
             <p className="text-zinc-500 font-mono text-xs uppercase tracking-[0.3em] max-w-xs text-right leading-relaxed">
-              Setiap proyek adalah hasil dari presisi teknis dan visi artistik yang tajam.
+              Setiap tugas dikerjakan dengan standar profesional untuk menjamin kelulusan dan nilai terbaik.
             </p>
           </div>
         </div>
@@ -154,15 +154,6 @@ export function ProjectSection() {
                    <ChevronDown size={14} />
                  </motion.div>
                </button>
-             </Magnetic>
-           )}
-
-           {isExpanded && (
-             <Magnetic strength={0.3}>
-               <Link href="#" className="text-zinc-500 hover:text-white transition-colors flex flex-col items-center gap-4 group">
-                 <span className="text-[10px] font-mono uppercase tracking-[0.5em]">Kolaborasi Sekarang</span>
-                 <div className="w-1 h-1 bg-zinc-800 rounded-full group-hover:bg-white transition-colors group-hover:scale-150 duration-500" />
-               </Link>
              </Magnetic>
            )}
         </div>
