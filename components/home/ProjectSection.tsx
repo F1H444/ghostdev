@@ -1,14 +1,14 @@
 'use client';
 
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Magnetic } from '@/components/ui/Magnetic';
 import { ChevronDown } from 'lucide-react';
-import { projects } from '@/lib/projects';
+import { fetchProjects, projects as staticProjects, Project } from '@/lib/projects';
 
-function ProjectCard({ project, index }: { project: any; index: number }) {
+function ProjectCard({ project, index }: { project: Project; index: number }) {
   const isLarge = project.size === "large";
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -65,7 +65,7 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
           src={project.image} 
           alt={project.title} 
           fill 
-          className="object-cover transition-transform duration-1000 group-hover:scale-110"
+          className="object-cover"
         />
         <div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-500" />
         
@@ -111,6 +111,18 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
 
 export function ProjectSection() {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [projects, setProjects] = useState<Project[]>(staticProjects);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadProjects = async () => {
+      const data = await fetchProjects();
+      setProjects(data);
+      setLoading(false);
+    };
+    loadProjects();
+  }, []);
+
   const visibleProjects = isExpanded ? projects : projects.slice(0, 4);
 
   return (

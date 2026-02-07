@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -16,22 +17,15 @@ export function Footer() {
             </p>
           </div>
 
+          <div className="md:col-span-1"></div>
+
           <div>
             <h3 className="text-[10px] font-mono text-zinc-600 uppercase tracking-[0.4em] mb-8">Navigasi</h3>
             <ul className="flex flex-col gap-4">
-              <li><a href="#about" className="text-zinc-400 hover:text-white transition-colors text-sm">Tentang</a></li>
-              <li><a href="#work" className="text-zinc-400 hover:text-white transition-colors text-sm">Karya</a></li>
-              <li><a href="#contact" className="text-zinc-400 hover:text-white transition-colors text-sm">Kontak</a></li>
+              <li><Link href="/about" className="text-zinc-400 hover:text-white transition-colors text-sm">Tentang</Link></li>
+              <li><Link href="/work" className="text-zinc-400 hover:text-white transition-colors text-sm">Karya</Link></li>
+              <li><Link href="/contact" className="text-zinc-400 hover:text-white transition-colors text-sm">Kontak</Link></li>
             </ul>
-          </div>
-
-          <div>
-            <h3 className="text-[10px] font-mono text-zinc-600 uppercase tracking-[0.4em] mb-8">Lokasi</h3>
-            <p className="text-zinc-400 text-sm leading-relaxed">
-              Operasi Global // <br />
-              Berbasis di Indonesia, <br />
-              Tersedia untuk Dunia.
-            </p>
           </div>
         </div>
 

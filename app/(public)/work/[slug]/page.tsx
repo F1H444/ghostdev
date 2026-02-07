@@ -1,16 +1,129 @@
 'use client';
 
 import { useParams } from 'next/navigation';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowLeft, ExternalLink, Cpu, Layout, Boxes } from 'lucide-react';
-import { projects } from '@/lib/projects';
+import { useState, useEffect } from 'react';
+import { ArrowLeft, ExternalLink, Cpu, Layout, Boxes, ChevronLeft, ChevronRight } from 'lucide-react';
+import { fetchProjectBySlug, projects as staticProjects, Project } from '@/lib/projects';
 import { Magnetic } from '@/components/ui/Magnetic';
+
+// Gallery component with navigation buttons
+function ProjectGallery({ images, title }: { images: string[]; title: string }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const hasMultiple = images.length > 1;
+
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const goToPrev = () => {
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  return (
+    <motion.div 
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+      className="relative w-full mb-32"
+    >
+      {/* Image Container */}
+      <div className="relative w-full rounded-2xl overflow-hidden border border-white/5 bg-zinc-900/50">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentIndex}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            className="w-full h-full relative"
+          >
+            <img 
+              src={images[currentIndex]} 
+              alt={`${title} - Gambar ${currentIndex + 1}`} 
+              className="w-full h-auto block select-none"
+              loading="lazy"
+            />
+            <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#09090b] to-transparent opacity-60 pointer-events-none" />
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      {/* Navigation Controls - Only show if multiple images */}
+      {hasMultiple && (
+        <div className="flex items-center justify-center gap-6 mt-8">
+          {/* Previous Button */}
+          <Magnetic strength={0.2}>
+            <button
+              onClick={goToPrev}
+              className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:border-white/40 hover:bg-white/5 transition-all group"
+            >
+              <ChevronLeft size={20} className="text-zinc-500 group-hover:text-white transition-colors" />
+            </button>
+          </Magnetic>
+
+          {/* Page Indicators */}
+          <div className="flex items-center gap-3">
+            {images.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentIndex(idx)}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  idx === currentIndex 
+                    ? 'w-8 bg-white' 
+                    : 'w-2 bg-zinc-700 hover:bg-zinc-500'
+                }`}
+              />
+            ))}
+          </div>
+
+          {/* Next Button */}
+          <Magnetic strength={0.2}>
+            <button
+              onClick={goToNext}
+              className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:border-white/40 hover:bg-white/5 transition-all group"
+            >
+              <ChevronRight size={20} className="text-zinc-500 group-hover:text-white transition-colors" />
+            </button>
+          </Magnetic>
+
+          {/* Page Counter */}
+          <span className="text-zinc-600 font-mono text-xs ml-4">
+            {currentIndex + 1} / {images.length}
+          </span>
+        </div>
+      )}
+    </motion.div>
+  );
+}
+
 
 export default function ProjectPage() {
   const { slug } = useParams();
-  const project = projects.find((p) => p.slug === slug);
+  const [project, setProject] = useState<Project | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadProject = async () => {
+      if (typeof slug === 'string') {
+        const data = await fetchProjectBySlug(slug);
+        setProject(data);
+      }
+      setLoading(false);
+    };
+    loadProject();
+  }, [slug]);
+
+  if (loading) {
+    return (
+      <div className="h-screen flex flex-col items-center justify-center">
+        <div className="w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+      </div>
+    );
+  }
 
   if (!project) {
     return (
@@ -75,25 +188,11 @@ export default function ProjectPage() {
           </div>
         </div>
 
-        {/* Project Image - Supports Long Vertical Screenshots */}
-        <motion.div 
-           initial={{ opacity: 0, y: 40 }}
-           whileInView={{ opacity: 1, y: 0 }}
-           viewport={{ once: true }}
-           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-           className="relative w-full rounded-2xl overflow-hidden border border-white/5 mb-32 bg-zinc-900/50"
-        >
-           {/* If longImage exists, we render it with auto height. Otherwise, use standard view */}
-           <div className="w-full h-full relative">
-              <img 
-                src={project.longImage || project.image} 
-                alt={project.title} 
-                className="w-full h-auto block select-none"
-                loading="lazy"
-              />
-              <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#09090b] to-transparent opacity-60 pointer-events-none" />
-           </div>
-        </motion.div>
+        {/* Project Image Gallery - Supports Multiple Long Screenshots */}
+        <ProjectGallery 
+          images={project.longImages || [project.image]} 
+          title={project.title}
+        />
 
         {/* Specs Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-32">

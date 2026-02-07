@@ -1,14 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { SmoothScroll } from "@/components/providers/SmoothScroll";
-import { NoiseBackground } from "@/components/ui/NoiseBackground";
-import { CustomCursor } from "@/components/ui/CustomCursor";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
-import { Preloader } from "@/components/ui/Preloader";
-import { BackgroundGeometry } from "@/components/ui/BackgroundGeometry";
-import { DigitalDust } from "@/components/ui/DigitalDust";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -69,18 +61,7 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <Preloader />
-        <SmoothScroll>
-          <NoiseBackground />
-          <DigitalDust />
-          <BackgroundGeometry />
-          <CustomCursor />
-          <Navbar />
-          <main className="min-h-screen relative z-10 flex flex-col">
-            {children}
-          </main>
-          <Footer />
-        </SmoothScroll>
+        {children}
       </body>
     </html>
   );

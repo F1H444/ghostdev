@@ -29,7 +29,7 @@ export function Navbar() {
       transition={{ duration: 0.8, ease: 'easeOut' }}
       className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-6 px-4"
     >
-      <nav className="glass-panel rounded-full px-6 py-3 flex items-center gap-8">
+      <nav className="bg-black/50 backdrop-blur-xl border border-white/10 rounded-full px-6 py-3 flex items-center gap-8">
         <Link href="/" className="text-xl font-bold tracking-tighter hover:opacity-80 transition-opacity mr-4">
           GHOSTDEV
         </Link>

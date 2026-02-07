@@ -1,22 +1,26 @@
+import { createClient, Project as SupabaseProject } from './supabase';
+
 export interface Project {
-  id: number;
+  id: number | string;
   slug: string;
   title: string;
   category: string;
   tech: string[];
   image: string;
-  longImage?: string; // Standard for long vertical screenshots
+  longImages?: string[]; // Array of long vertical screenshots for gallery
   size: "large" | "small";
 }
 
-export const projects: Project[] = [
+// Static fallback data
+const staticProjects: Project[] = [
   {
     id: 1,
     slug: "website-bromotrail",
     title: "Website Bromotrail",
     category: "Pemrograman Web",
     tech: ["Laravel", "PHP", "MySQL", "Tailwind", "Framer-Motion"],
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=90",
+    image: "/hero/bromotrail-hero.png",
+    longImages: ["/all/bromotrail-all.jpeg"],
     size: "large"
   },
   {
@@ -25,7 +29,7 @@ export const projects: Project[] = [
     title: "Website Mumu Kitchen",
     category: "Pemrograman Web",
     tech: ["Laravel", "PHP", "MySQL", "Tailwind", "Framer-Motion"],
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=90",
+    image: "/hero/mumu-hero.png",
     size: "small"
   },
   {
@@ -34,44 +38,90 @@ export const projects: Project[] = [
     title: "Website SbyTickets",
     category: "Pemrograman Web",
     tech: ["Laravel", "PHP", "MySQL", "Tailwind", "Framer-Motion"],
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=90",
+    image: "/hero/sbytickets-hero.png",
+    longImages: ["/all/sbytickets-all.jpeg"],
     size: "small"
   },
-    {
+  {
     id: 4,
     slug: "website-sikalori",
     title: "Website Sikalori",
     category: "Pemrograman Web",
     tech: ["Next.js", "React", "Tailwind", "Framer-Motion"],
-    image: "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=90",
+    image: "/hero/sikalori-hero.png",
+    longImages: ["/all/sikalori-all.jpeg"],
     size: "large"
   },
   {
-    id:5,
+    id: 5,
     slug: "website-befresh",
     title: "Website Befresh",
     category: "Pemrograman Web",
     tech: ["Laravel", "PHP", "MySQL", "Tailwind", "Framer-Motion"],
-    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=90",
+    image: "/hero/befresh-hero.png",
+    longImages: ["/all/befresh-all.jpeg"],
     size: "small"
   },
-  {
-    id: 6,
-    slug: "website-Ikkar",
-    title: "Website Ikkar",
-    category: "Pemrograman Web",
-    tech: ["Laravel", "PHP", "MySQL", "Tailwind", "Framer-Motion"],
-    image: "https://images.unsplash.com/photo-1561070791-26c11d204a3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=90",
-    size: "small"
-  },
-  {
-    id: 7,
-    slug: "website-solenusa",
-    title: "Website Solenusa",
-    category: "Pemrograman Web",
-    tech: ["Code-Igniter", "PHP", "MySQL", "Tailwind", "Framer-Motion"],
-    image: "https://images.unsplash.com/photo-1561070791-26c11d204a3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=90",
-    size: "large"
-  },
-
 ];
+
+// Convert Supabase project to local Project format
+function convertProject(p: SupabaseProject): Project {
+  return {
+    id: p.id,
+    slug: p.slug,
+    title: p.title,
+    category: p.category,
+    tech: p.tech,
+    image: p.image,
+    longImages: p.long_images || undefined,
+    size: p.size,
+  };
+}
+
+// Fetch projects from Supabase, fallback to static
+export async function fetchProjects(): Promise<Project[]> {
+  try {
+    const supabase = createClient();
+    const { data, error } = await supabase
+      .from('projects')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error || !data || data.length === 0) {
+      console.log('Using static projects fallback');
+      return staticProjects;
+    }
+
+    return data.map(convertProject);
+  } catch {
+    console.log('Using static projects fallback');
+    return staticProjects;
+  }
+}
+
+// Fetch single project by slug from Supabase
+export async function fetchProjectBySlug(slug: string): Promise<Project | null> {
+  try {
+    const supabase = createClient();
+    const { data, error } = await supabase
+      .from('projects')
+      .select('*')
+      .eq('slug', slug)
+      .single();
+
+    if (error || !data) {
+      // Fallback to static
+      const staticProject = staticProjects.find(p => p.slug === slug);
+      return staticProject || null;
+    }
+
+    return convertProject(data);
+  } catch {
+    const staticProject = staticProjects.find(p => p.slug === slug);
+    return staticProject || null;
+  }
+}
+
+// Keep static export for backward compatibility during transition
+export const projects: Project[] = staticProjects;
+
