@@ -5,12 +5,16 @@ export function middleware(request: NextRequest) {
   const response = NextResponse.next();
   
   // Security Headers
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
+  const supabaseHost = supabaseUrl ? new URL(supabaseUrl).host : '';
+
+  // Security Headers
   const cspHeader = `
     default-src 'self';
     script-src 'self' 'unsafe-eval' 'unsafe-inline';
     style-src 'self' 'unsafe-inline';
-    img-src 'self' blob: data: https://xusdgjpmhfztallfffnz.supabase.co https://images.unsplash.com;
-    connect-src 'self' https://xusdgjpmhfztallfffnz.supabase.co;
+    img-src 'self' blob: data: ${supabaseUrl} *.supabase.co https://images.unsplash.com;
+    connect-src 'self' ${supabaseUrl} *.supabase.co;
     font-src 'self';
     object-src 'none';
     base-uri 'self';

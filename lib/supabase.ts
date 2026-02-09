@@ -117,7 +117,11 @@ export async function uploadProjectImage(file: File, folder: string = 'hero'): P
     .upload(fileName, file)
   
   if (error) {
-    console.error('Error uploading image:', error)
+    console.error('Error uploading image detailed:', {
+      message: error.message,
+      name: error.name,
+      status: (error as any).status
+    })
     return null
   }
   
