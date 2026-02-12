@@ -8,7 +8,6 @@ export interface Project {
   tech: string[];
   image: string;
   longImages?: string[]; // Array of long vertical screenshots for gallery
-  size: "large" | "small";
 }
 
 // Static fallback data
@@ -21,7 +20,6 @@ const staticProjects: Project[] = [
     tech: ["Laravel", "PHP", "MySQL", "Tailwind", "Framer-Motion"],
     image: "/hero/bromotrail-hero.png",
     longImages: ["/all/bromotrail-all.jpeg"],
-    size: "large"
   },
   {
     id: 2,
@@ -30,7 +28,6 @@ const staticProjects: Project[] = [
     category: "Pemrograman Web",
     tech: ["Laravel", "PHP", "MySQL", "Tailwind", "Framer-Motion"],
     image: "/hero/mumu-hero.png",
-    size: "small"
   },
   {
     id: 3,
@@ -40,7 +37,6 @@ const staticProjects: Project[] = [
     tech: ["Laravel", "PHP", "MySQL", "Tailwind", "Framer-Motion"],
     image: "/hero/sbytickets-hero.png",
     longImages: ["/all/sbytickets-all.jpeg"],
-    size: "small"
   },
   {
     id: 4,
@@ -50,7 +46,6 @@ const staticProjects: Project[] = [
     tech: ["Next.js", "React", "Tailwind", "Framer-Motion"],
     image: "/hero/sikalori-hero.png",
     longImages: ["/all/sikalori-all.jpeg"],
-    size: "large"
   },
   {
     id: 5,
@@ -60,7 +55,6 @@ const staticProjects: Project[] = [
     tech: ["Laravel", "PHP", "MySQL", "Tailwind", "Framer-Motion"],
     image: "/hero/befresh-hero.png",
     longImages: ["/all/befresh-all.jpeg"],
-    size: "small"
   },
 ];
 
@@ -74,7 +68,6 @@ function convertProject(p: SupabaseProject): Project {
     tech: p.tech,
     image: p.image,
     longImages: p.long_images || undefined,
-    size: p.size,
   };
 }
 

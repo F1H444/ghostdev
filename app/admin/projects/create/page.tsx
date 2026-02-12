@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowLeft, Save, Plus, X, ImageIcon } from 'lucide-react';
-import { createProject, uploadProjectImage } from '@/lib/supabase';
+import { ArrowLeft, Save, Plus, X, ImageIcon, Search } from 'lucide-react';
+import { createProject, uploadProjectImage, listBuckets } from '@/lib/supabase';
 
 export default function NewProjectPage() {
   const router = useRouter();
@@ -17,7 +17,6 @@ export default function NewProjectPage() {
     tech: [] as string[],
     image: '',
     long_images: [] as string[],
-    size: 'small' as 'large' | 'small',
     description: '',
   });
   const [newTech, setNewTech] = useState('');
@@ -50,11 +49,12 @@ export default function NewProjectPage() {
     if (!file) return;
 
     setUploadingHero(true);
-    const url = await uploadProjectImage(file, 'hero');
+    setUploadingHero(true);
+    const { url, error } = await uploadProjectImage(file, 'hero');
     if (url) {
       setFormData({ ...formData, image: url });
     } else {
-      alert('Gagal upload gambar');
+      alert(`Gagal upload gambar: ${error}`);
     }
     setUploadingHero(false);
   };
@@ -64,11 +64,12 @@ export default function NewProjectPage() {
     if (!file) return;
 
     setUploadingGallery(true);
-    const url = await uploadProjectImage(file, 'gallery');
+    setUploadingGallery(true);
+    const { url, error } = await uploadProjectImage(file, 'gallery');
     if (url) {
       setFormData({ ...formData, long_images: [...formData.long_images, url] });
     } else {
-      alert('Gagal upload gambar');
+      alert(`Gagal upload gambar: ${error}`);
     }
     setUploadingGallery(false);
   };
@@ -117,6 +118,17 @@ export default function NewProjectPage() {
           <h1 className="text-2xl font-bold text-white">Tambah Project Baru</h1>
           <p className="text-zinc-500 text-sm">Isi detail project di bawah ini</p>
         </div>
+        <button
+          type="button"
+          onClick={async () => {
+             const buckets = await listBuckets();
+             const names = buckets.map(b => b.name).join(', ');
+             alert(`Available buckets: ${names}`);
+          }}
+          className="ml-auto px-4 py-2 bg-white/10 text-white rounded-lg text-sm hover:bg-white/20"
+        >
+          Check Buckets
+        </button>
       </div>
 
       {/* Form */}
@@ -153,7 +165,7 @@ export default function NewProjectPage() {
         </div>
 
         {/* Category & Size */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4">
           <div className="space-y-2">
             <label className="text-zinc-400 text-sm font-medium">Kategori</label>
             <select
@@ -165,17 +177,6 @@ export default function NewProjectPage() {
               <option value="Mobile App" className="bg-zinc-900 text-white">Mobile App</option>
               <option value="UI/UX Design" className="bg-zinc-900 text-white">UI/UX Design</option>
               <option value="Desktop App" className="bg-zinc-900 text-white">Desktop App</option>
-            </select>
-          </div>
-          <div className="space-y-2">
-            <label className="text-zinc-400 text-sm font-medium">Ukuran Tampilan</label>
-            <select
-              value={formData.size}
-              onChange={(e) => setFormData({ ...formData, size: e.target.value as 'large' | 'small' })}
-              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-white/30 transition-all"
-            >
-              <option value="large" className="bg-zinc-900 text-white">Large</option>
-              <option value="small" className="bg-zinc-900 text-white">Small</option>
             </select>
           </div>
         </div>

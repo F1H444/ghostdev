@@ -1,7 +1,6 @@
 'use client';
 
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
-import { NoiseBackground } from "@/components/ui/NoiseBackground";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -18,7 +17,6 @@ export default function PublicLayout({
     <>
       <Preloader />
       <SmoothScroll>
-        <NoiseBackground />
         <DigitalDust />
         <BackgroundGeometry />
         <CustomCursor />

@@ -19,20 +19,23 @@ export function TestimonialsSection() {
   const [dynamicReviews, setDynamicReviews] = useState<Review[]>([]);
   const [showModal, setShowModal] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   
-  useEffect(() => {
-    const fetchReviews = async () => {
-      const supabase = createClient();
-      const { data } = await supabase
-        .from('reviews')
-        .select('*')
-        .order('created_at', { ascending: false });
-      
-      if (data) {
-        setDynamicReviews(data);
-      }
-    };
+  const fetchReviews = async () => {
+    setIsLoading(true);
+    const supabase = createClient();
+    const { data } = await supabase
+      .from('reviews')
+      .select('*')
+      .order('created_at', { ascending: false });
     
+    if (data) {
+      setDynamicReviews(data);
+    }
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
     fetchReviews();
   }, []);
 
@@ -46,51 +49,54 @@ export function TestimonialsSection() {
     } else {
       alert('Terima kasih! Ulasan Anda telah berhasil dikirim.');
       setShowModal(false);
-      // Refresh reviews
-      const supabase = createClient();
-      const { data } = await supabase
-        .from('reviews')
-        .select('*')
-        .order('created_at', { ascending: false });
-      if (data) setDynamicReviews(data);
+      fetchReviews();
     }
   };
 
-  const allReviews = dynamicReviews;
-
   return (
-    <section className="py-24 relative">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="mb-16 flex flex-col items-center">
-          <h2 className="text-[10px] font-mono text-zinc-600 uppercase tracking-[1em] mb-8 text-center text-white">Testimoni Klien</h2>
-          <div className="w-12 h-[1px] bg-zinc-800 mb-8" />
-          
+    <section id="testimonials" className="min-h-screen py-32 flex items-center bg-black relative z-10 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-8 w-full">
+        <div className="mb-24 flex flex-col md:flex-row md:items-end justify-between gap-12">
+          <div className="max-w-2xl">
+            <h2 className="text-xs font-mono text-zinc-600 uppercase tracking-[0.4em] mb-6">Client Stories</h2>
+            <h3 className="text-5xl md:text-7xl font-bold text-white tracking-tighter leading-none">
+              Apa Kata Mereka? <br /> <span className="text-zinc-700 italic">Bukti Nyata</span> Kualitas.
+            </h3>
+          </div>
           <button
             onClick={() => setShowModal(true)}
-            className="flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:border-white/30 transition-all text-sm text-zinc-300 hover:text-white group"
+            className="h-14 px-8 flex items-center gap-3 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:border-white/30 transition-all text-xs font-bold uppercase tracking-widest text-zinc-300 hover:text-white group"
           >
             <Plus className="w-4 h-4 group-hover:rotate-90 transition-transform" />
             <span>Tulis Ulasan</span>
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {allReviews.map((review, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: (i % 4) * 0.1 }}
-              className="p-8 border border-white/5 rounded-2xl bg-white/[0.02] hover:bg-white/[0.05] transition-colors flex flex-col justify-between group"
-            >
-              <p className="text-zinc-400 text-sm leading-relaxed mb-8 group-hover:text-zinc-200 transition-colors">"{review.text}"</p>
-              <div>
-                <h4 className="text-white font-bold text-sm">{review.name}</h4>
-                <p className="text-zinc-600 text-[10px] font-mono uppercase tracking-widest">{review.role}</p>
-              </div>
-            </motion.div>
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <AnimatePresence mode="popLayout">
+            {isLoading ? (
+              [...Array(3)].map((_, i) => (
+                <div key={i} className="h-64 bg-zinc-900 animate-pulse rounded-[2.5rem]" />
+              ))
+            ) : (
+              dynamicReviews.map((review, i) => (
+                <motion.div
+                  key={review.id || i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="p-10 rounded-[2.5rem] bg-zinc-900/40 border border-white/5 backdrop-blur-sm flex flex-col justify-between h-full"
+                >
+                  <p className="text-zinc-400 text-sm leading-relaxed mb-8">"{review.text}"</p>
+                  <div>
+                    <h4 className="text-white font-bold text-sm tracking-tight">{review.name}</h4>
+                    <p className="text-zinc-600 text-[10px] font-mono uppercase tracking-widest mt-1">{review.role}</p>
+                  </div>
+                </motion.div>
+              ))
+            )}
+          </AnimatePresence>
         </div>
       </div>
 

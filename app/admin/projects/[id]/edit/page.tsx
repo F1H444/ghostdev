@@ -19,7 +19,6 @@ export default function EditProjectPage() {
     tech: [] as string[],
     image: '',
     long_images: [] as string[],
-    size: 'small' as 'large' | 'small',
     description: '',
   });
   const [newTech, setNewTech] = useState('');
@@ -48,7 +47,6 @@ export default function EditProjectPage() {
         tech: data.tech || [],
         image: data.image,
         long_images: data.long_images || [],
-        size: data.size,
         description: data.description || '',
       });
       setLoading(false);
@@ -73,11 +71,12 @@ export default function EditProjectPage() {
     if (!file) return;
 
     setUploadingHero(true);
-    const url = await uploadProjectImage(file, 'hero');
+    setUploadingHero(true);
+    const { url, error } = await uploadProjectImage(file, 'hero');
     if (url) {
       setFormData({ ...formData, image: url });
     } else {
-      alert('Gagal upload gambar');
+      alert(`Gagal upload gambar: ${error}`);
     }
     setUploadingHero(false);
   };
@@ -87,11 +86,12 @@ export default function EditProjectPage() {
     if (!file) return;
 
     setUploadingGallery(true);
-    const url = await uploadProjectImage(file, 'gallery');
+    setUploadingGallery(true);
+    const { url, error } = await uploadProjectImage(file, 'gallery');
     if (url) {
       setFormData({ ...formData, long_images: [...formData.long_images, url] });
     } else {
-      alert('Gagal upload gambar');
+      alert(`Gagal upload gambar: ${error}`);
     }
     setUploadingGallery(false);
   };
@@ -206,7 +206,7 @@ export default function EditProjectPage() {
         </div>
 
         {/* Category & Size */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4">
           <div className="space-y-2">
             <label className="text-zinc-400 text-sm font-medium">Kategori</label>
             <select
@@ -218,17 +218,6 @@ export default function EditProjectPage() {
               <option value="Mobile App" className="bg-zinc-900 text-white">Mobile App</option>
               <option value="UI/UX Design" className="bg-zinc-900 text-white">UI/UX Design</option>
               <option value="Desktop App" className="bg-zinc-900 text-white">Desktop App</option>
-            </select>
-          </div>
-          <div className="space-y-2">
-            <label className="text-zinc-400 text-sm font-medium">Ukuran Tampilan</label>
-            <select
-              value={formData.size}
-              onChange={(e) => setFormData({ ...formData, size: e.target.value as 'large' | 'small' })}
-              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-white/30 transition-all"
-            >
-              <option value="large" className="bg-zinc-900 text-white">Large</option>
-              <option value="small" className="bg-zinc-900 text-white">Small</option>
             </select>
           </div>
         </div>

@@ -6,8 +6,9 @@ import { MessageSquare, Phone, Mail } from "lucide-react";
 
 export function ContactSection() {
   return (
-    <section id="contact" className="py-20 md:py-40 px-6">
-      <div className="max-w-7xl mx-auto">
+    <section id="contact" className="min-h-screen py-32 flex items-center bg-black relative z-10">
+      <div className="max-w-7xl mx-auto px-8 w-full relative">
+        
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-end">
           <div>
             <h2 className="text-xs font-mono text-zinc-600 uppercase tracking-[0.4em] mb-10">Koneksi</h2>
@@ -64,7 +65,25 @@ export function ContactSection() {
           </div>
         </div>
 
-        <div className="mt-40 pt-20 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+        {/* More Content Expansion */}
+        <div className="mt-40 grid grid-cols-1 md:grid-cols-3 gap-16 pt-20 border-t border-white/5">
+          <div className="space-y-6">
+            <h4 className="text-white font-bold uppercase tracking-widest text-xs font-mono">Jam Operasional</h4>
+            <ul className="space-y-2 text-zinc-500 text-sm">
+              <li className="flex justify-between"><span>Senin - Jumat</span> <span>08:00 - 22:00</span></li>
+              <li className="flex justify-between"><span>Sabtu - Minggu</span> <span>10:00 - 18:00</span></li>
+            </ul>
+          </div>
+          <div className="md:col-span-2 space-y-6">
+            <h4 className="text-white font-bold uppercase tracking-widest text-xs font-mono">Mengapa GhostDev?</h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 text-sm text-zinc-500 leading-relaxed">
+              <p>Memprioritaskan kualitas kode dan logika yang bersih, memastikan tugas Anda dapat dipertanggungjawabkan.</p>
+              <p>Dukungan revisi dan konsultasi gratis hingga proyek Anda benar-benar sesuai keinginan penguji.</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-40 pt-20 flex flex-col md:flex-row justify-between items-center gap-8">
            <div className="flex flex-col items-center md:items-start gap-4">
               <span className="text-[10px] font-mono text-zinc-600 uppercase tracking-[0.5em]">Tersedia Global</span>
               <div className="flex items-center gap-2">

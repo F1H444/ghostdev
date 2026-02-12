@@ -92,7 +92,7 @@ export function CustomCursor() {
               initial={{ scale: 0.8, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.8, opacity: 0, y: 10 }}
-              className="relative w-64 bg-zinc-900/90 backdrop-blur-xl border border-white/10 p-6 rounded-2xl shadow-3xl overflow-hidden"
+              className="relative w-64 bg-zinc-900/90 backdrop-blur-xl border border-white/10 p-6 rounded-2xl overflow-hidden"
             >
               {/* Card Accent */}
               <div className="absolute top-0 left-0 w-1 h-full bg-white/20" />

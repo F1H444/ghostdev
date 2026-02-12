@@ -61,7 +61,7 @@ export default function ProjectsListPage() {
           <p className="text-zinc-500 mt-1">Kelola semua project Anda</p>
         </div>
         <Link
-          href="/admin/projects/new"
+          href="/admin/projects/create"
           className="flex items-center gap-2 px-5 py-3 bg-white text-black font-bold rounded-xl hover:bg-zinc-200 transition-colors"
         >
           <Plus className="w-5 h-5" />
@@ -88,7 +88,7 @@ export default function ProjectsListPage() {
             <tr>
               <th className="px-6 py-4 text-left text-zinc-400 text-sm font-medium">Project</th>
               <th className="px-6 py-4 text-left text-zinc-400 text-sm font-medium hidden md:table-cell">Category</th>
-              <th className="px-6 py-4 text-left text-zinc-400 text-sm font-medium hidden lg:table-cell">Size</th>
+
               <th className="px-6 py-4 text-right text-zinc-400 text-sm font-medium">Actions</th>
             </tr>
           </thead>
@@ -126,15 +126,7 @@ export default function ProjectsListPage() {
                   <td className="px-6 py-4 hidden md:table-cell">
                     <span className="text-zinc-400 text-sm">{project.category}</span>
                   </td>
-                  <td className="px-6 py-4 hidden lg:table-cell">
-                    <span className={`inline-flex px-3 py-1 rounded-full text-xs font-medium ${
-                      project.size === 'large' 
-                        ? 'bg-blue-500/10 text-blue-400' 
-                        : 'bg-zinc-500/10 text-zinc-400'
-                    }`}>
-                      {project.size}
-                    </span>
-                  </td>
+
                   <td className="px-6 py-4">
                     <div className="flex items-center justify-end gap-2">
                       <Link

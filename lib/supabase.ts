@@ -16,7 +16,6 @@ export interface Project {
   tech: string[];
   image: string;
   long_images?: string[] | null;
-  size: "large" | "small";
   description?: string | null;
   created_at?: string;
   updated_at?: string;
@@ -107,27 +106,46 @@ export async function deleteProject(id: string): Promise<boolean> {
 }
 
 // Upload image to Supabase Storage
-export async function uploadProjectImage(file: File, folder: string = 'hero'): Promise<string | null> {
+export async function uploadProjectImage(file: File, folder: string = 'hero'): Promise<{ url: string | null; error: string | null }> {
   const supabase = createClient()
+  
+  // Sanitize filename
   const fileExt = file.name.split('.').pop()
-  const fileName = `${folder}/${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`
+  const sanitizedName = file.name.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase()
+  const fileName = `${folder}/${Date.now()}-${Math.random().toString(36).substring(7)}-${sanitizedName}.${fileExt}`
   
   const { error } = await supabase.storage
-    .from('project-images')
-    .upload(fileName, file)
+    .from('PROJECT-IMAGES')
+    .upload(fileName, file, {
+      cacheControl: '3600',
+      upsert: false
+    })
   
   if (error) {
     console.error('Error uploading image detailed:', {
       message: error.message,
       name: error.name,
-      status: (error as any).status
+      // @ts-ignore
+      status: error.status || error.statusCode
     })
-    return null
+    return { url: null, error: error.message }
   }
   
   const { data: { publicUrl } } = supabase.storage
-    .from('project-images')
+    .from('PROJECT-IMAGES')
     .getPublicUrl(fileName)
   
-  return publicUrl
+  return { url: publicUrl, error: null }
+  return { url: publicUrl, error: null }
+}
+
+// List all buckets (Diagnostic)
+export async function listBuckets() {
+  const supabase = createClient()
+  const { data, error } = await supabase.storage.listBuckets()
+  if (error) {
+    console.error('Error listing buckets:', error)
+    return []
+  }
+  return data || []
 }

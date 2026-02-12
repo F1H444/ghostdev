@@ -10,7 +10,7 @@ const items = [
 
 export function InfiniteMarquee() {
   return (
-    <div className="relative w-full overflow-hidden py-12 border-y border-white/5">
+    <div className="relative w-full overflow-hidden py-12 border-y border-white/5 bg-black">
       <div className="flex w-max">
         <motion.div
           animate={{ x: [0, -2000] }}

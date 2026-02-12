@@ -47,7 +47,7 @@ function ProjectGallery({ images, title }: { images: string[]; title: string }) 
               className="w-full h-auto block select-none"
               loading="lazy"
             />
-            <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#09090b] to-transparent opacity-60 pointer-events-none" />
+            <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black to-transparent opacity-60 pointer-events-none" />
           </motion.div>
         </AnimatePresence>
       </div>
@@ -137,7 +137,7 @@ export default function ProjectPage() {
   }
 
   return (
-    <div className="min-h-screen pt-32 pb-64 px-8 md:px-24">
+    <div className="min-h-screen pt-32 pb-64 px-8 md:px-24 bg-black">
       <div className="max-w-7xl mx-auto">
         {/* Navigation */}
         <Link href="/" className="inline-flex items-center gap-4 group mb-24">
