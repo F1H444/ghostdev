@@ -35,25 +35,25 @@ export default function AdminDashboard() {
 
   const stats = [
     {
-      label: 'Total Projects',
+      label: 'Total Proyek',
       value: totalProjects,
       icon: FolderKanban,
       color: 'bg-blue-500/10 text-blue-500 border border-blue-500/20',
-      change: '+12% growth'
+      change: '+12% kenaikan'
     },
     {
-      label: 'Active Categories',
+      label: 'Kategori Aktif',
       value: totalCategories,
       icon: Layers,
       color: 'bg-purple-500/10 text-purple-500 border border-purple-500/20',
-      change: 'Diverse portfolio'
+      change: 'Portofolio beragam'
     },
     {
-      label: 'Tech Stacks',
+      label: 'Stack Teknologi',
       value: totalTech,
       icon: Code2,
       color: 'bg-cyan-500/10 text-cyan-500 border border-cyan-500/20',
-      change: 'Modern tools'
+      change: 'Tool modern'
     },
   ];
 
@@ -71,14 +71,14 @@ export default function AdminDashboard() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold text-white">Dashboard</h1>
-          <p className="text-zinc-500 mt-1">Overview of your portfolio performance</p>
+          <p className="text-zinc-500 mt-1">Ikhtisar performa portofolio Anda</p>
         </div>
         <Link
           href="/admin/projects/create"
           className="flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-xl hover:scale-105 transition-all shadow-lg shadow-blue-500/20"
         >
           <Plus className="w-5 h-5" />
-          <span>New Project</span>
+          <span>Proyek Baru</span>
         </Link>
       </div>
 
@@ -117,12 +117,12 @@ export default function AdminDashboard() {
         {/* Recent Projects */}
         <div className="lg:col-span-2 space-y-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold text-white">Recent Projects</h2>
+            <h2 className="text-xl font-bold text-white">Proyek Terbaru</h2>
             <Link
               href="/admin/projects"
               className="text-zinc-400 hover:text-white text-sm font-medium transition-colors"
             >
-              View All
+              Lihat Semua
             </Link>
           </div>
           
@@ -194,10 +194,10 @@ export default function AdminDashboard() {
 
         {/* Quick Actions / Summary */}
         <div className="space-y-6">
-          <h2 className="text-xl font-bold text-white">Quick Overview</h2>
+          <h2 className="text-xl font-bold text-white">Ikhtisar Cepat</h2>
           <div className="bg-zinc-900 rounded-2xl border border-white/5 p-6 space-y-6">
             <div>
-              <h3 className="text-sm font-medium text-zinc-400 mb-4">Latest Activity</h3>
+              <h3 className="text-sm font-medium text-zinc-400 mb-4">Aktivitas Terbaru</h3>
               {recentProject ? (
                 <div className="flex gap-4 items-start">
                   <div className="w-16 h-16 rounded-lg bg-zinc-800 overflow-hidden flex-shrink-0">
@@ -209,41 +209,41 @@ export default function AdminDashboard() {
                   </div>
                   <div>
                     <p className="text-white font-medium line-clamp-1">{recentProject.title}</p>
-                    <p className="text-zinc-500 text-xs mt-1">Added recently</p>
+                    <p className="text-zinc-500 text-xs mt-1">Baru saja ditambahkan</p>
                     <Link 
                       href={`/admin/projects/${recentProject.id}/edit`}
                       className="text-xs text-blue-400 hover:text-blue-300 mt-2 inline-block"
                     >
-                      Edit Project
+                      Edit Proyek
                     </Link>
                   </div>
                 </div>
               ) : (
-                <p className="text-zinc-500 text-sm">No projects yet.</p>
+                <p className="text-zinc-500 text-sm">Belum ada proyek.</p>
               )}
             </div>
 
             <div className="h-px bg-white/5" />
 
             <div>
-              <h3 className="text-sm font-medium text-zinc-400 mb-3">System Status</h3>
+              <h3 className="text-sm font-medium text-zinc-400 mb-3">Status Sistem</h3>
               <div className="space-y-2">
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-zinc-500">Database</span>
                   <span className="flex items-center gap-1.5 text-blue-400">
                     <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-                    Connected
+                    Terhubung
                   </span>
                 </div>
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-zinc-500">Storage</span>
                   <span className="flex items-center gap-1.5 text-purple-400">
                     <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
-                    Available
+                    Tersedia
                   </span>
                 </div>
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-zinc-500">Version</span>
+                  <span className="text-zinc-500">Versi</span>
                   <span className="text-zinc-300 font-mono">v1.2.0</span>
                 </div>
               </div>

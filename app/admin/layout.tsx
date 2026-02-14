@@ -18,8 +18,8 @@ import { createClient } from '@/lib/supabase';
 
 const navItems = [
   { href: '/admin', label: 'Dashboard', icon: LayoutDashboard, color: 'text-blue-500', activeBg: 'bg-blue-500' },
-  { href: '/admin/projects', label: 'Projects', icon: FolderKanban, color: 'text-purple-500', activeBg: 'bg-purple-500' },
-  { href: '/admin/reviews', label: 'Reviews', icon: MessageSquare, color: 'text-green-500', activeBg: 'bg-green-500' },
+  { href: '/admin/projects', label: 'Proyek', icon: FolderKanban, color: 'text-purple-500', activeBg: 'bg-purple-500' },
+  { href: '/admin/reviews', label: 'Ulasan', icon: MessageSquare, color: 'text-green-500', activeBg: 'bg-green-500' },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -156,7 +156,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-red-400 hover:bg-red-500/10 transition-colors"
           >
             <LogOut className="w-5 h-5" />
-            <span className="font-medium">Logout</span>
+            <span className="font-medium">Keluar</span>
           </button>
         </div>
       </motion.aside>

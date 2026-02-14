@@ -72,7 +72,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           href={`/work/${project.slug}`}
           className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest text-zinc-500 hover:text-white transition-colors mt-2"
         >
-          <span>View Details</span>
+          <span>Lihat Detail</span>
           <div className="w-1 h-1 rounded-full bg-current" />
         </Link>
       </div>
@@ -102,9 +102,9 @@ export function ProjectSection() {
         
         {/* Section Header */}
         <div className="mb-24 flex flex-col items-center text-center">
-          <h2 className="text-xs font-mono text-zinc-600 uppercase tracking-[0.6em] mb-6">Selected Masterpieces</h2>
+          <h2 className="text-xs font-mono text-zinc-600 uppercase tracking-[0.6em] mb-6">Mahakarya Pilihan</h2>
           <h3 className="text-5xl md:text-7xl font-bold text-white tracking-tighter leading-tight">
-            SELECTED <span className="text-blue-500">WORKS.</span>
+            KARYA <span className="text-blue-500">TERPILIH.</span>
           </h3>
         </div>
 
@@ -140,10 +140,10 @@ export function ProjectSection() {
         <div className="mt-40 pt-40 border-t border-white/5">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12">
             {[
-              { id: '01', title: 'Consult' },
-              { id: '02', title: 'Construct' },
-              { id: '03', title: 'Refine' },
-              { id: '04', title: 'Deliver' }
+              { id: '01', title: 'Konsultasi' },
+              { id: '02', title: 'Konstruksi' },
+              { id: '03', title: 'Penyempurnaan' },
+              { id: '04', title: 'Penyerahan' }
             ].map((step, idx) => (
               <div key={idx}>
                 <span className="text-zinc-900 font-black text-6xl mb-6 block leading-none">{step.id}</span>

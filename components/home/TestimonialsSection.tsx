@@ -59,7 +59,7 @@ export function TestimonialsSection() {
       <div className="max-w-7xl mx-auto px-8 w-full">
         <div className="mb-24 flex flex-col md:flex-row md:items-end justify-between gap-12">
           <div className="max-w-2xl">
-            <h2 className="text-xs font-mono text-zinc-600 uppercase tracking-[0.4em] mb-6">Client Stories</h2>
+            <h2 className="text-xs font-mono text-zinc-600 uppercase tracking-[0.4em] mb-6">Cerita Klien</h2>
             <h3 className="text-5xl md:text-7xl font-bold text-white tracking-tighter leading-none">
               Apa Kata Mereka? <br /> <span className="text-blue-500 italic">Bukti Nyata</span> Kualitas.
             </h3>

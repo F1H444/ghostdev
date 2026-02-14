@@ -5,7 +5,7 @@ import { Layout, Shield, Zap, Globe, Cpu, Smartphone } from 'lucide-react';
 
 const services = [
   {
-    title: "Web Development",
+    title: "Pengembangan Web",
     description: "Membangun ekosistem digital yang cepat, aman, dan memukau klien Anda.",
     icon: Globe,
     className: "md:col-span-2 md:row-span-1 bg-blue-600/10 border-blue-500/20",
@@ -19,21 +19,21 @@ const services = [
     color: "text-yellow-500"
   },
   {
-    title: "App Design",
+    title: "Desain Aplikasi",
     description: "Antarmuka modern yang memprioritaskan pengalaman pengguna.",
     icon: Layout,
     className: "md:col-span-1 md:row-span-2 bg-zinc-900/50 border-white/5",
     color: "text-purple-500"
   },
   {
-    title: "Security Logic",
+    title: "Logika Keamanan",
     description: "Keamanan tingkat lanjut untuk infrastruktur digital Anda.",
     icon: Shield,
     className: "md:col-span-1 md:row-span-1 bg-zinc-900/50 border-white/5",
     color: "text-green-500"
   },
   {
-    title: "Tech Solutions",
+    title: "Solusi Teknologi",
     description: "Konsultasi teknis untuk masalah programming yang kompleks.",
     icon: Cpu,
     className: "md:col-span-2 md:row-span-1 bg-cyan-600/10 border-cyan-500/20",
@@ -46,7 +46,7 @@ export function ServicesSection() {
     <section id="services" className="min-h-screen flex items-center justify-center py-32 px-0 relative z-10 bg-black">
       <div className="max-w-7xl mx-auto px-8 w-full">
         <div className="mb-20">
-          <h2 className="text-xs font-mono text-zinc-600 uppercase tracking-[0.4em] mb-6">Expertise</h2>
+          <h2 className="text-xs font-mono text-zinc-600 uppercase tracking-[0.4em] mb-6">Keahlian</h2>
           <h3 className="text-4xl md:text-6xl font-bold text-white tracking-tighter">
             Layanan Terpadu. <br /> Kualitas <span className="text-blue-500 italic">Tanpa Kompromi.</span>
           </h3>

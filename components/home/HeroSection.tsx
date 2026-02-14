@@ -75,7 +75,7 @@ export function HeroSection() {
            transition={{ delay: 0.2 }}
            className="mb-8 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-xs font-medium text-zinc-300"
         >
-          ✨ Transforming Ideas into Digital Reality
+          ✨ Mengubah Ide Menjadi Realitas Digital
         </motion.div>
 
         <motion.div
@@ -106,7 +106,7 @@ export function HeroSection() {
             Partner Rahasia untuk <span className="text-yellow-500 font-semibold">UKK,</span> <span className="text-purple-500 font-semibold">Programming,</span> & <span className="text-cyan-500 font-semibold">Solusi Teknik</span> Berkelas Dunia.
             <br />
             <span className="text-sm md:text-base mt-2 block text-zinc-500">
-              We construct digital experiences that merge art with functionality.
+              Kami membangun pengalaman digital yang memadukan seni dengan fungsi.
             </span>
           </h2>
 
@@ -135,15 +135,15 @@ export function HeroSection() {
           <div className="grid grid-cols-3 gap-8 md:gap-16 pt-8 border-t border-white/5 mt-8 w-full">
             <div className="flex flex-col items-center">
               <span className="text-2xl font-bold text-white"><Counter target={50} />+</span>
-              <span className="text-xs text-zinc-500 uppercase tracking-wider mt-1">Projects</span>
+              <span className="text-xs text-zinc-500 uppercase tracking-wider mt-1">Proyek</span>
             </div>
             <div className="flex flex-col items-center">
               <span className="text-2xl font-bold text-white"><Counter target={100} />%</span>
-              <span className="text-xs text-zinc-500 uppercase tracking-wider mt-1">Satisfaction</span>
+              <span className="text-xs text-zinc-500 uppercase tracking-wider mt-1">Kepuasan</span>
             </div>
             <div className="flex flex-col items-center">
               <span className="text-2xl font-bold text-white">24/7</span>
-              <span className="text-xs text-zinc-500 uppercase tracking-wider mt-1">Support</span>
+              <span className="text-xs text-zinc-500 uppercase tracking-wider mt-1">Dukungan</span>
             </div>
           </div>
         </motion.div>
