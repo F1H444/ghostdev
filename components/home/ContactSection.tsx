@@ -13,7 +13,7 @@ export function ContactSection() {
           <div>
             <h2 className="text-xs font-mono text-zinc-600 uppercase tracking-[0.4em] mb-10">Koneksi</h2>
             <h3 className="text-5xl md:text-8xl font-bold text-white tracking-tighter leading-[0.9] mb-12">
-              Kirim <br /> Tugasmu.
+              Kirim <br /> <span className="text-blue-500">Tugasmu.</span>
             </h3>
             <p className="text-zinc-500 text-lg md:text-xl max-w-md leading-relaxed mb-12">
               Konsultasikan tugas atau proyek UKK Anda secara gratis. Kami siap membantu memberikan solusi teknis terbaik.
@@ -87,13 +87,13 @@ export function ContactSection() {
            <div className="flex flex-col items-center md:items-start gap-4">
               <span className="text-[10px] font-mono text-zinc-600 uppercase tracking-[0.5em]">Tersedia Global</span>
               <div className="flex items-center gap-2">
-                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                 <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
                  <span className="text-zinc-400 text-sm font-medium">Siap untuk pengerjaan joki baru</span>
               </div>
            </div>
            
            <div className="flex gap-12 text-zinc-600 font-mono text-[10px] uppercase tracking-widest">
-              GhostDev // Est. 2026
+              <span className="text-blue-500/40">GhostDev</span> // <span className="text-purple-500/40">Est. 2026</span>
            </div>
         </div>
       </div>

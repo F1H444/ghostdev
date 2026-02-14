@@ -103,7 +103,7 @@ export function HeroSection() {
           className="max-w-2xl space-y-10 flex flex-col items-center"
         >
           <h2 className="text-xl md:text-2xl text-zinc-400 font-light tracking-wide leading-relaxed">
-            Partner Rahasia untuk <span className="text-white font-semibold">UKK, Programming,</span> & <span className="text-white font-semibold">Solusi Teknik</span> Berkelas Dunia.
+            Partner Rahasia untuk <span className="text-yellow-500 font-semibold">UKK,</span> <span className="text-purple-500 font-semibold">Programming,</span> & <span className="text-cyan-500 font-semibold">Solusi Teknik</span> Berkelas Dunia.
             <br />
             <span className="text-sm md:text-base mt-2 block text-zinc-500">
               We construct digital experiences that merge art with functionality.

@@ -38,22 +38,22 @@ export default function AdminDashboard() {
       label: 'Total Projects',
       value: totalProjects,
       icon: FolderKanban,
-      color: 'bg-blue-500/10 text-blue-400',
-      change: '+12% from last month'
+      color: 'bg-blue-500/10 text-blue-500 border border-blue-500/20',
+      change: '+12% growth'
     },
     {
       label: 'Active Categories',
       value: totalCategories,
       icon: Layers,
-      color: 'bg-purple-500/10 text-purple-400',
+      color: 'bg-purple-500/10 text-purple-500 border border-purple-500/20',
       change: 'Diverse portfolio'
     },
     {
       label: 'Tech Stacks',
       value: totalTech,
       icon: Code2,
-      color: 'bg-emerald-500/10 text-emerald-400',
-      change: 'Technologies used'
+      color: 'bg-cyan-500/10 text-cyan-500 border border-cyan-500/20',
+      change: 'Modern tools'
     },
   ];
 
@@ -75,7 +75,7 @@ export default function AdminDashboard() {
         </div>
         <Link
           href="/admin/projects/create"
-          className="flex items-center justify-center gap-2 px-5 py-3 bg-white text-black font-bold rounded-xl hover:bg-zinc-200 transition-colors"
+          className="flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-xl hover:scale-105 transition-all shadow-lg shadow-blue-500/20"
         >
           <Plus className="w-5 h-5" />
           <span>New Project</span>
@@ -133,7 +133,14 @@ export default function AdminDashboard() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.2 + index * 0.05 }}
-                className="group relative overflow-hidden rounded-2xl bg-zinc-900 border border-white/5 hover:border-white/20 transition-all"
+                className={`group relative overflow-hidden rounded-2xl bg-zinc-900 border transition-all duration-500 ${
+                  [
+                    'border-blue-500/20 hover:border-blue-500/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.1)]',
+                    'border-purple-500/20 hover:border-purple-500/50 hover:shadow-[0_0_20px_rgba(168,85,247,0.1)]',
+                    'border-cyan-500/20 hover:border-cyan-500/50 hover:shadow-[0_0_20px_rgba(6,182,212,0.1)]',
+                    'border-yellow-500/20 hover:border-yellow-500/50 hover:shadow-[0_0_20px_rgba(234,179,8,0.1)]'
+                  ][index % 4]
+                }`}
               >
                 <div className="aspect-video relative overflow-hidden bg-zinc-800">
                   {project.image ? (
@@ -223,21 +230,21 @@ export default function AdminDashboard() {
               <div className="space-y-2">
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-zinc-500">Database</span>
-                  <span className="flex items-center gap-1.5 text-emerald-400">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                  <span className="flex items-center gap-1.5 text-blue-400">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
                     Connected
                   </span>
                 </div>
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-zinc-500">Storage</span>
-                  <span className="flex items-center gap-1.5 text-emerald-400">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                  <span className="flex items-center gap-1.5 text-purple-400">
+                    <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
                     Available
                   </span>
                 </div>
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-zinc-500">Version</span>
-                  <span className="text-zinc-300">v1.2.0</span>
+                  <span className="text-zinc-300 font-mono">v1.2.0</span>
                 </div>
               </div>
             </div>

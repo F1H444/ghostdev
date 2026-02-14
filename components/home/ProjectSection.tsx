@@ -9,14 +9,34 @@ import { ChevronDown } from 'lucide-react';
 import { fetchProjects, projects as staticProjects, Project } from '@/lib/projects';
 import { cn } from '@/lib/utils';
 
-function ProjectCard({ project }: { project: Project }) {
+function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const colors = [
+    'hover:border-blue-500/50',
+    'hover:border-purple-500/50',
+    'hover:border-cyan-500/50',
+    'hover:border-yellow-500/50',
+    'hover:border-green-500/50'
+  ];
+  const hoverColor = colors[index % colors.length];
+  const textColors = [
+    'group-hover:text-blue-500',
+    'group-hover:text-purple-500',
+    'group-hover:text-cyan-500',
+    'group-hover:text-yellow-500',
+    'group-hover:text-green-500'
+  ];
+  const textColor = textColors[index % textColors.length];
+
   return (
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="group relative flex flex-col bg-zinc-900/40 rounded-[2rem] border border-white/5 overflow-hidden transition-all duration-500 hover:border-white/20"
+      className={cn(
+        "group relative flex flex-col bg-zinc-900/40 rounded-[2rem] border border-white/5 overflow-hidden transition-all duration-500",
+        hoverColor
+      )}
     >
       <Link href={`/work/${project.slug}`} className="relative aspect-video overflow-hidden">
         <Image 
@@ -34,7 +54,7 @@ function ProjectCard({ project }: { project: Project }) {
             {project.category}
           </span>
           <Link href={`/work/${project.slug}`}>
-            <h4 className="text-2xl font-bold text-white tracking-tight hover:text-blue-500 transition-colors">
+            <h4 className={cn("text-2xl font-bold text-white tracking-tight transition-colors", textColor)}>
               {project.title}
             </h4>
           </Link>
@@ -84,15 +104,36 @@ export function ProjectSection() {
         <div className="mb-24 flex flex-col items-center text-center">
           <h2 className="text-xs font-mono text-zinc-600 uppercase tracking-[0.6em] mb-6">Selected Masterpieces</h2>
           <h3 className="text-5xl md:text-7xl font-bold text-white tracking-tighter leading-tight">
-            SELECTED <span className="text-zinc-800">WORKS.</span>
+            SELECTED <span className="text-blue-500">WORKS.</span>
           </h3>
         </div>
 
         {/* Standard Project Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-          {visibleProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+          {visibleProjects.map((project, i) => (
+            <ProjectCard key={project.id} project={project} index={i} />
           ))}
+        </div>
+
+        {/* View All CTA - Relocated here */}
+        <div className="mt-20 flex justify-center">
+           {!isExpanded && (
+             <Magnetic strength={0.3}>
+               <button 
+                 onClick={() => setIsExpanded(true)}
+                 className="flex flex-col items-center gap-6 group"
+               >
+                 <span className="text-[10px] font-mono uppercase tracking-[0.4em] text-zinc-500 group-hover:text-white transition-colors">Load More Works ({projects.length - 4})</span>
+                 <motion.div 
+                   animate={{ y: [0, 5, 0] }}
+                   transition={{ repeat: Infinity, duration: 2 }}
+                   className="w-12 h-12 flex items-center justify-center border border-white/10 rounded-full text-zinc-500 group-hover:border-blue-500 group-hover:text-blue-500 transition-all bg-zinc-950"
+                 >
+                   <ChevronDown size={18} />
+                 </motion.div>
+               </button>
+             </Magnetic>
+           )}
         </div>
 
         {/* Workflow / Steps */}
@@ -118,26 +159,6 @@ export function ProjectSection() {
           </div>
         </div>
 
-        {/* View All CTA */}
-        <div className="mt-32 flex justify-center">
-           {!isExpanded && (
-             <Magnetic strength={0.3}>
-               <button 
-                 onClick={() => setIsExpanded(true)}
-                 className="flex flex-col items-center gap-6 group"
-               >
-                 <span className="text-[10px] font-mono uppercase tracking-[0.4em] text-zinc-500 group-hover:text-white transition-colors">Load More Works (8)</span>
-                 <motion.div 
-                   animate={{ y: [0, 5, 0] }}
-                   transition={{ repeat: Infinity, duration: 2 }}
-                   className="w-12 h-12 flex items-center justify-center border border-white/10 rounded-full text-zinc-500 group-hover:border-white/40 group-hover:text-white transition-all bg-zinc-950"
-                 >
-                   <ChevronDown size={18} />
-                 </motion.div>
-               </button>
-             </Magnetic>
-           )}
-        </div>
       </div>
     </section>
   );

@@ -17,9 +17,9 @@ import {
 import { createClient } from '@/lib/supabase';
 
 const navItems = [
-  { href: '/admin', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/admin/projects', label: 'Projects', icon: FolderKanban },
-  { href: '/admin/reviews', label: 'Reviews', icon: MessageSquare },
+  { href: '/admin', label: 'Dashboard', icon: LayoutDashboard, color: 'text-blue-500', activeBg: 'bg-blue-500' },
+  { href: '/admin/projects', label: 'Projects', icon: FolderKanban, color: 'text-purple-500', activeBg: 'bg-purple-500' },
+  { href: '/admin/reviews', label: 'Reviews', icon: MessageSquare, color: 'text-green-500', activeBg: 'bg-green-500' },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -95,11 +95,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       >
         {/* Logo */}
         <div className="h-20 flex-shrink-0 flex items-center justify-between px-6 border-b border-white/5">
-          <Link href="/admin" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center">
-              <span className="text-black font-black text-lg">G</span>
+          <Link href="/admin" className="flex items-center gap-3 group">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 via-purple-500 to-cyan-500 flex items-center justify-center group-hover:scale-110 transition-transform shadow-[0_0_15px_rgba(59,130,246,0.5)]">
+              <span className="text-white font-black text-lg">G</span>
             </div>
-            <span className="text-white font-bold text-lg">GhostDev</span>
+            <span className="text-white font-bold text-lg tracking-tight">GhostDev</span>
           </Link>
           <button
             onClick={() => setSidebarOpen(false)}
@@ -122,13 +122,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                   <Link
                     href={item.href}
                     onClick={() => setSidebarOpen(false)}
-                    className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all group ${
+                    className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all group relative overflow-hidden ${
                       isActive 
-                        ? 'bg-white text-black' 
+                        ? `${item.activeBg} text-white shadow-[0_0_20px_rgba(0,0,0,0.2)]` 
                         : 'text-zinc-400 hover:text-white hover:bg-white/5'
                     }`}
                   >
-                    <Icon className="w-5 h-5" />
+                    <Icon className={`w-5 h-5 ${isActive ? 'text-white' : `group-hover:${item.color}`}`} />
                     <span className="font-medium">{item.label}</span>
                     {isActive && (
                       <ChevronRight className="w-4 h-4 ml-auto" />
@@ -175,9 +175,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <Link
               href="/"
               target="_blank"
-              className="text-zinc-500 hover:text-white text-sm font-medium transition-colors"
+              className="text-blue-500 hover:text-blue-400 text-sm font-bold tracking-widest uppercase transition-colors flex items-center gap-2 group"
             >
-              Lihat Website →
+              <span>Lihat Website</span>
+              <span className="group-hover:translate-x-1 transition-transform">→</span>
             </Link>
           </div>
         </header>

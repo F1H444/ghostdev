@@ -115,7 +115,7 @@ export async function uploadProjectImage(file: File, folder: string = 'hero'): P
   const fileName = `${folder}/${Date.now()}-${Math.random().toString(36).substring(7)}-${sanitizedName}.${fileExt}`
   
   const { error } = await supabase.storage
-    .from('PROJECT-IMAGES')
+    .from('project-images')
     .upload(fileName, file, {
       cacheControl: '3600',
       upsert: false
@@ -132,7 +132,7 @@ export async function uploadProjectImage(file: File, folder: string = 'hero'): P
   }
   
   const { data: { publicUrl } } = supabase.storage
-    .from('PROJECT-IMAGES')
+    .from('project-images')
     .getPublicUrl(fileName)
   
   return { url: publicUrl, error: null }

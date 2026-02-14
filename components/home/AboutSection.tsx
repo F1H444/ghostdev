@@ -32,7 +32,7 @@ export function AboutSection() {
         
         <div className="flex flex-col items-center mb-16">
           <h2 className="text-[10px] font-mono text-zinc-600 uppercase tracking-[1em] mb-8 text-center">Filosofi Kami</h2>
-          <div className="w-12 h-[1px] bg-white/10" />
+          <div className="w-12 h-[1px] bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500" />
         </div>
         
         <div className="flex flex-wrap justify-center gap-x-4 gap-y-6 text-center">

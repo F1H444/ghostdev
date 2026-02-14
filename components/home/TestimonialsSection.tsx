@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import { createClient } from '@/lib/supabase';
 import { submitReview } from '@/app/actions/reviews';
 import { X, Send, Plus, Loader2 } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 
 
@@ -60,7 +61,7 @@ export function TestimonialsSection() {
           <div className="max-w-2xl">
             <h2 className="text-xs font-mono text-zinc-600 uppercase tracking-[0.4em] mb-6">Client Stories</h2>
             <h3 className="text-5xl md:text-7xl font-bold text-white tracking-tighter leading-none">
-              Apa Kata Mereka? <br /> <span className="text-zinc-700 italic">Bukti Nyata</span> Kualitas.
+              Apa Kata Mereka? <br /> <span className="text-blue-500 italic">Bukti Nyata</span> Kualitas.
             </h3>
           </div>
           <button
@@ -86,7 +87,16 @@ export function TestimonialsSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="p-10 rounded-[2.5rem] bg-zinc-900/40 border border-white/5 backdrop-blur-sm flex flex-col justify-between h-full"
+                  className={cn(
+                    "p-10 rounded-[2.5rem] bg-zinc-900/40 border backdrop-blur-sm flex flex-col justify-between h-full transition-all duration-500",
+                    [
+                      "border-white/5 hover:border-green-500/30",
+                      "border-white/5 hover:border-purple-500/30",
+                      "border-white/5 hover:border-blue-500/30",
+                      "border-white/5 hover:border-cyan-500/30",
+                      "border-white/5 hover:border-yellow-500/30"
+                    ][i % 5]
+                  )}
                 >
                   <p className="text-zinc-400 text-sm leading-relaxed mb-8">"{review.text}"</p>
                   <div>
