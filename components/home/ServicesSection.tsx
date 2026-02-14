@@ -48,7 +48,7 @@ export function ServicesSection() {
         <div className="mb-20">
           <h2 className="text-xs font-mono text-zinc-600 uppercase tracking-[0.4em] mb-6">Keahlian</h2>
           <h3 className="text-4xl md:text-6xl font-bold text-white tracking-tighter">
-            Layanan Terpadu. <br /> Kualitas <span className="text-blue-500 italic">Tanpa Kompromi.</span>
+            Solusi All-in-One. <br /> Kualitas <span className="text-blue-500 italic">Nggak Pake Kompromi.</span>
           </h3>
         </div>
 

@@ -72,7 +72,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           href={`/work/${project.slug}`}
           className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest text-zinc-500 hover:text-white transition-colors mt-2"
         >
-          <span>Lihat Detail</span>
+          <span>Intip Detailnya</span>
           <div className="w-1 h-1 rounded-full bg-current" />
         </Link>
       </div>
@@ -102,7 +102,7 @@ export function ProjectSection() {
         
         {/* Section Header */}
         <div className="mb-24 flex flex-col items-center text-center">
-          <h2 className="text-xs font-mono text-zinc-600 uppercase tracking-[0.6em] mb-6">Mahakarya Pilihan</h2>
+          <h2 className="text-xs font-mono text-zinc-600 uppercase tracking-[0.6em] mb-6">Koleksi Karya Jagoan</h2>
           <h3 className="text-5xl md:text-7xl font-bold text-white tracking-tighter leading-tight">
             KARYA <span className="text-blue-500">TERPILIH.</span>
           </h3>
@@ -123,7 +123,7 @@ export function ProjectSection() {
                  onClick={() => setIsExpanded(true)}
                  className="flex flex-col items-center gap-6 group"
                >
-                 <span className="text-[10px] font-mono uppercase tracking-[0.4em] text-zinc-500 group-hover:text-white transition-colors">Load More Works ({projects.length - 4})</span>
+                 <span className="text-[10px] font-mono uppercase tracking-[0.4em] text-zinc-500 group-hover:text-white transition-colors">Cek Karya Lainnya ({projects.length - 4})</span>
                  <motion.div 
                    animate={{ y: [0, 5, 0] }}
                    transition={{ repeat: Infinity, duration: 2 }}
@@ -140,10 +140,10 @@ export function ProjectSection() {
         <div className="mt-40 pt-40 border-t border-white/5">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12">
             {[
-              { id: '01', title: 'Konsultasi' },
-              { id: '02', title: 'Konstruksi' },
-              { id: '03', title: 'Penyempurnaan' },
-              { id: '04', title: 'Penyerahan' }
+              { id: '01', title: 'Tanya-Tanya Dulu' },
+              { id: '02', title: 'Mulai Bangun' },
+              { id: '03', title: 'Poles & Rapikan' },
+              { id: '04', title: 'Beres & Kirim' }
             ].map((step, idx) => (
               <div key={idx}>
                 <span className="text-zinc-900 font-black text-6xl mb-6 block leading-none">{step.id}</span>

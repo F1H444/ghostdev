@@ -16,7 +16,7 @@ export function ContactSection() {
               Kirim <br /> <span className="text-blue-500">Tugasmu.</span>
             </h3>
             <p className="text-zinc-500 text-lg md:text-xl max-w-md leading-relaxed mb-12">
-              Konsultasikan tugas atau proyek UKK Anda secara gratis. Kami siap membantu memberikan solusi teknis terbaik.
+              Tanya-tanya soal tugas atau proyek UKK kamu gratis kok. Kami siap kasih solusi teknis yang paling oke buat kamu.
             </p>
           </div>
 
@@ -88,7 +88,7 @@ export function ContactSection() {
               <span className="text-[10px] font-mono text-zinc-600 uppercase tracking-[0.5em]">Tersedia Global</span>
               <div className="flex items-center gap-2">
                  <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
-                 <span className="text-zinc-400 text-sm font-medium">Siap untuk pengerjaan joki baru</span>
+                 <span className="text-zinc-400 text-sm font-medium">Siap bantu garap tugas atau joki baru nih</span>
               </div>
            </div>
            

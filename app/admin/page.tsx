@@ -71,11 +71,11 @@ export default function AdminDashboard() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h1 className="text-3xl font-bold text-white">Dashboard</h1>
-          <p className="text-zinc-500 mt-1">Ikhtisar performa portofolio Anda</p>
+          <p className="text-zinc-500 mt-1">Pantau performa portofolio kamu di sini</p>
         </div>
         <Link
           href="/admin/projects/create"
-          className="flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-xl hover:scale-105 transition-all shadow-lg shadow-blue-500/20"
+          className="flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-500 transition-all shadow-lg shadow-blue-500/10"
         >
           <Plus className="w-5 h-5" />
           <span>Proyek Baru</span>
@@ -154,7 +154,7 @@ export default function AdminDashboard() {
                       <FolderKanban className="w-10 h-10" />
                     </div>
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-opacity" />
                   
                   <div className="absolute top-3 right-3">
                     <span className="px-2 py-1 bg-black/50 backdrop-blur-md rounded-lg text-xs font-medium text-white border border-white/10">
@@ -209,7 +209,7 @@ export default function AdminDashboard() {
                   </div>
                   <div>
                     <p className="text-white font-medium line-clamp-1">{recentProject.title}</p>
-                    <p className="text-zinc-500 text-xs mt-1">Baru saja ditambahkan</p>
+                    <p className="text-zinc-500 text-xs mt-1">Barusan ditambahin</p>
                     <Link 
                       href={`/admin/projects/${recentProject.id}/edit`}
                       className="text-xs text-blue-400 hover:text-blue-300 mt-2 inline-block"

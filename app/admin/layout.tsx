@@ -96,7 +96,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         {/* Logo */}
         <div className="h-20 flex-shrink-0 flex items-center justify-between px-6 border-b border-white/5">
           <Link href="/admin" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 via-purple-500 to-cyan-500 flex items-center justify-center group-hover:scale-110 transition-transform shadow-[0_0_15px_rgba(59,130,246,0.5)]">
+            <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center group-hover:scale-110 transition-transform shadow-[0_0_15px_rgba(59,130,246,0.3)]">
               <span className="text-white font-black text-lg">G</span>
             </div>
             <span className="text-white font-bold text-lg tracking-tight">GhostDev</span>

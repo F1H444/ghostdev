@@ -40,31 +40,6 @@ export function HeroSection() {
       
       {/* Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
-        <motion.div 
-          animate={{ 
-            scale: [1, 1.2, 1],
-            opacity: [0.15, 0.25, 0.15],
-          }}
-          transition={{ 
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] mix-blend-screen" 
-        />
-        <motion.div 
-          animate={{ 
-            scale: [1, 1.1, 1],
-            opacity: [0.1, 0.2, 0.1],
-          }}
-          transition={{ 
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1
-          }}
-          className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[120px] mix-blend-screen" 
-        />
       </div>
 
       <div className="relative z-10 w-full max-w-7xl px-8 flex flex-col items-center text-center">
@@ -75,7 +50,7 @@ export function HeroSection() {
            transition={{ delay: 0.2 }}
            className="mb-8 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-xs font-medium text-zinc-300"
         >
-          ✨ Mengubah Ide Menjadi Realitas Digital
+          GASS JOKI SEKARANG 
         </motion.div>
 
         <motion.div
@@ -103,11 +78,8 @@ export function HeroSection() {
           className="max-w-2xl space-y-10 flex flex-col items-center"
         >
           <h2 className="text-xl md:text-2xl text-zinc-400 font-light tracking-wide leading-relaxed">
-            Partner Rahasia untuk <span className="text-yellow-500 font-semibold">UKK,</span> <span className="text-purple-500 font-semibold">Programming,</span> & <span className="text-cyan-500 font-semibold">Solusi Teknik</span> Berkelas Dunia.
+            Partner Rahasia Untuk Tugas <span className="text-yellow-500 font-semibold">UKK </span> Meliputi <span className="text-purple-500 font-semibold">Programming</span>,<span className="text-cyan-500 font-semibold"> Perancangan Database</span> & <span className="text-purple-500 font-semibold">Diagram</span>.
             <br />
-            <span className="text-sm md:text-base mt-2 block text-zinc-500">
-              Kami membangun pengalaman digital yang memadukan seni dengan fungsi.
-            </span>
           </h2>
 
           <div className="flex flex-col sm:flex-row gap-6 items-center">
@@ -118,7 +90,7 @@ export function HeroSection() {
                 rel="noopener noreferrer"
                 className="group relative h-14 px-10 flex items-center justify-center overflow-hidden bg-white text-black rounded-full transition-all hover:scale-105"
               >
-                <span className="relative z-10 text-xs font-bold uppercase tracking-widest">Mulai Project</span>
+                <span className="relative z-10 text-xs font-bold uppercase tracking-widest">Mulai Bangun Proyek</span>
               </a>
             </Magnetic>
             <Magnetic strength={0.3}>
@@ -126,7 +98,7 @@ export function HeroSection() {
                 href="#work" 
                 className="group relative h-14 px-10 flex items-center justify-center overflow-hidden border border-white/10 bg-white/5 backdrop-blur-sm rounded-full transition-all hover:bg-white/10 hover:border-white/20"
               >
-                <span className="relative z-10 text-xs font-bold uppercase tracking-widest text-zinc-300 group-hover:text-white transition-all">Lihat Portfolio</span>
+                <span className="relative z-10 text-xs font-bold uppercase tracking-widest text-zinc-300 group-hover:text-white transition-all">Lihat Karya Kami</span>
               </a>
             </Magnetic>
           </div>
