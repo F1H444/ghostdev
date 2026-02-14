@@ -1,6 +1,7 @@
 # GhostDev | Agensi Digital Kreatif
 
-<img width="1918" height="988" alt="image" src="https://github.com/user-attachments/assets/9899d8fb-7ae7-4ed2-aa27-6e63feddba37" />
+<img width="1919" height="984" alt="image" src="https://github.com/user-attachments/assets/0ce371d8-75d6-476c-8926-2345c40f8224" />
+
 
 
 > **"Kami merancang pengalaman digital yang menghantui kompetisi."**
