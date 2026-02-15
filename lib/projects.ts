@@ -8,6 +8,7 @@ export interface Project {
   tech: string[];
   image: string;
   longImages?: string[]; // Array of long vertical screenshots for gallery
+  size?: string;
 }
 
 // Static fallback data
@@ -68,6 +69,7 @@ function convertProject(p: SupabaseProject): Project {
     tech: p.tech,
     image: p.image,
     longImages: p.long_images || undefined,
+    size: p.size || 'small',
   };
 }
 

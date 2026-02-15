@@ -18,6 +18,7 @@ export default function NewProjectPage() {
     image: '',
     long_images: [] as string[],
     description: '',
+    size: 'small',
   });
   const [newTech, setNewTech] = useState('');
   const [uploadingHero, setUploadingHero] = useState(false);
@@ -94,12 +95,13 @@ export default function NewProjectPage() {
       ...formData,
       long_images: formData.long_images.length > 0 ? formData.long_images : null,
       description: formData.description || null,
+      size: formData.size,
     });
 
     if (project) {
       router.push('/admin/projects');
     } else {
-      alert('Gagal membuat project');
+      alert('Gagal membuat project. Cek Console (F12) untuk melihat pesan error spesifik dan pastikan halaman sudah di-refresh (Ctrl+F5).');
       setLoading(false);
     }
   };
@@ -116,19 +118,8 @@ export default function NewProjectPage() {
         </Link>
         <div>
           <h1 className="text-2xl font-bold text-white">Tambah Project Baru</h1>
-          <p className="text-zinc-500 text-sm">Isi detail project di bawah ini</p>
-        </div>
-        <button
-          type="button"
-          onClick={async () => {
-             const buckets = await listBuckets();
-             const names = buckets.map(b => b.name).join(', ');
-             alert(`Available buckets: ${names}`);
-          }}
-          className="ml-auto px-4 py-2 bg-white/10 text-white rounded-lg text-sm hover:bg-white/20"
-        >
-          Check Buckets
-        </button>
+        <p className="text-zinc-500 text-sm">Isi detail project di bawah ini</p>
+      </div>
       </div>
 
       {/* Form */}
@@ -165,18 +156,30 @@ export default function NewProjectPage() {
         </div>
 
         {/* Category & Size */}
-        <div className="grid grid-cols-1 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
             <label className="text-zinc-400 text-sm font-medium">Kategori</label>
             <select
               value={formData.category}
               onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-white/30 transition-all"
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-white/30 transition-all font-sans"
             >
               <option value="Pemrograman Web" className="bg-zinc-900 text-white">Pemrograman Web</option>
               <option value="Mobile App" className="bg-zinc-900 text-white">Mobile App</option>
               <option value="UI/UX Design" className="bg-zinc-900 text-white">UI/UX Design</option>
               <option value="Desktop App" className="bg-zinc-900 text-white">Desktop App</option>
+            </select>
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-zinc-400 text-sm font-medium">Ukuran Display</label>
+            <select
+              value={formData.size}
+              onChange={(e) => setFormData({ ...formData, size: e.target.value })}
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-white/30 transition-all font-sans"
+            >
+              <option value="small" className="bg-zinc-900 text-white">Kecil (Grid 1x1)</option>
+              <option value="large" className="bg-zinc-900 text-white">Besar (Highlight)</option>
             </select>
           </div>
         </div>

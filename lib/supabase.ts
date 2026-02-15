@@ -17,6 +17,7 @@ export interface Project {
   image: string;
   long_images?: string[] | null;
   description?: string | null;
+  size?: string | null;
   created_at?: string;
   updated_at?: string;
 }
@@ -57,6 +58,7 @@ export async function getProjectBySlug(slug: string): Promise<Project | null> {
 // Create new project
 export async function createProject(project: Omit<Project, 'id' | 'created_at' | 'updated_at'>): Promise<Project | null> {
   const supabase = createClient()
+  
   const { data, error } = await supabase
     .from('projects')
     .insert([project])
