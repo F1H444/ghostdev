@@ -145,16 +145,33 @@ export function ProjectSection() {
           viewport={{ once: true, margin: "-100px" }}
           className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12"
         >
-          {visibleProjects.map((project, i) => (
-            <motion.div key={project.id} variants={cardVariants}>
-              <ProjectCard project={project} index={i} />
-            </motion.div>
-          ))}
+          <AnimatePresence mode="popLayout">
+            {visibleProjects.map((project, i) => {
+              const isLast = i === visibleProjects.length - 1;
+              const isOdd = visibleProjects.length % 2 !== 0;
+              
+              return (
+                <motion.div 
+                  key={project.id} 
+                  variants={cardVariants}
+                  layout
+                  initial="hidden"
+                  animate="visible"
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  className={cn(
+                    isLast && isOdd ? "md:col-span-2" : ""
+                  )}
+                >
+                  <ProjectCard project={project} index={i} />
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
         </motion.div>
 
         {/* View All CTA */}
         <div className="mt-20 flex justify-center">
-           {!isExpanded && (
+           {!isExpanded && projects.length > 4 && (
              <Magnetic strength={0.3}>
                <motion.button 
                  initial={{ opacity: 0 }}
