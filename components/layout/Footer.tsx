@@ -7,9 +7,9 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full pt-12 pb-12 px-6 border-t border-white/5 bg-black">
+    <footer className="w-full pt-8 pb-8 px-6 border-t border-white/5 bg-black">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="md:col-span-2">
             <h2 className="text-2xl font-bold text-white tracking-tighter mb-8">GHOSTDEV</h2>
             <p className="text-zinc-500 text-sm max-w-xs leading-relaxed">
@@ -29,7 +29,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-zinc-600 text-[10px] font-mono uppercase tracking-widest">
             &copy; {currentYear} GhostDev. Hak Cipta Dilindungi.
           </p>
@@ -42,7 +42,7 @@ export function Footer() {
       </div>
 
       {/* Massive Brand Watermark */}
-      <div className="mt-12 overflow-hidden pointer-events-none select-none opacity-[0.02] flex justify-center">
+      <div className="mt-8 overflow-hidden pointer-events-none select-none opacity-[0.02] flex justify-center">
         <h2 className="text-[15vw] font-black leading-none tracking-tighter text-white whitespace-nowrap">
           GHOSTDEV
         </h2>

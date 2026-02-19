@@ -2,10 +2,12 @@
 
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLoading } from '@/components/providers/LoadingProvider';
 
 export function Preloader() {
   const [count, setCount] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
+  const { setIsLoading } = useLoading();
 
   useEffect(() => {
     let start = 0;
@@ -18,14 +20,17 @@ export function Preloader() {
       if (start >= end) {
         setCount(100);
         clearInterval(timer);
-        setTimeout(() => setIsVisible(false), 500);
+        setTimeout(() => {
+          setIsVisible(false);
+          setIsLoading(false);
+        }, 500);
       } else {
         setCount(Math.floor(start));
       }
     }, 16);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [setIsLoading]);
 
   return (
     <AnimatePresence>

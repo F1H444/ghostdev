@@ -15,7 +15,6 @@ export default function PublicLayout({
 }>) {
   return (
     <>
-      <Preloader />
       <SmoothScroll>
         <DigitalDust />
         <BackgroundGeometry />

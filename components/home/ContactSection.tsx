@@ -4,23 +4,62 @@ import { motion } from "framer-motion";
 import { Magnetic } from "@/components/ui/Magnetic";
 import { MessageSquare, Phone, Mail } from "lucide-react";
 
+const contactHeading = "Kirim Tugasmu.";
+const characters = contactHeading.split("");
+
 export function ContactSection() {
   return (
-    <section id="contact" className="min-h-screen py-32 flex items-center bg-black relative z-10">
-      <div className="max-w-7xl mx-auto px-8 w-full relative">
+    <section id="contact" className="min-h-screen py-24 flex items-center bg-black relative z-10">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 w-full relative">
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-end">
           <div>
-            <h2 className="text-xs font-mono text-zinc-600 uppercase tracking-[0.4em] mb-10">Koneksi</h2>
-            <h3 className="text-5xl md:text-8xl font-bold text-white tracking-tighter leading-[0.9] mb-12">
-              Kirim <br /> <span className="text-blue-500">Tugasmu.</span>
-            </h3>
-            <p className="text-zinc-500 text-lg md:text-xl max-w-md leading-relaxed mb-12">
+            <motion.h2 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="text-xs font-mono text-zinc-600 uppercase tracking-[0.4em] mb-10"
+            >
+              Koneksi
+            </motion.h2>
+            
+            <div className="overflow-hidden flex flex-wrap mb-8 md:mb-12">
+              {characters.map((char, i) => (
+                <motion.span
+                  key={i}
+                  initial={{ y: "100%" }}
+                  whileInView={{ y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ 
+                    duration: 1, 
+                    delay: i * 0.03,
+                    ease: [0.16, 1, 0.3, 1]
+                  }}
+                  className="text-4xl md:text-8xl font-bold text-white tracking-tighter leading-[0.9] inline-block whitespace-pre"
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </div>
+
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5 }}
+              className="text-zinc-500 text-lg md:text-xl max-w-md leading-relaxed mb-12"
+            >
               Tanya-tanya soal tugas atau proyek UKK kamu gratis kok. Kami siap kasih solusi teknis yang paling oke buat kamu.
-            </p>
+            </motion.p>
           </div>
 
-          <div className="flex flex-col gap-6">
+          <motion.div 
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col gap-6"
+          >
             <Magnetic strength={0.1}>
               <a 
                 href="https://wa.me/6281216802722" 
@@ -37,8 +76,9 @@ export function ContactSection() {
                      <p className="text-white font-bold">0812-1680-2722</p>
                    </div>
                 </div>
-                <div className="opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all text-white">
-                  <span className="text-xs font-mono uppercase tracking-widest">Chat Sekarang</span>
+                <div className="opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all text-white text-right">
+                  <span className="text-[10px] font-mono uppercase tracking-widest block">Online 24/7</span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-blue-500">Chat Sekarang</span>
                 </div>
               </a>
             </Magnetic>
@@ -57,16 +97,17 @@ export function ContactSection() {
                      <p className="text-white font-bold">admin@ghostdev.co</p>
                    </div>
                 </div>
-                <div className="opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all text-white">
-                  <span className="text-xs font-mono uppercase tracking-widest">Kirim Surat</span>
+                <div className="opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all text-white text-right">
+                   <span className="text-[10px] font-mono uppercase tracking-widest block">Fast Response</span>
+                   <span className="text-[10px] font-bold uppercase tracking-widest text-blue-500">Kirim Surat</span>
                 </div>
               </a>
             </Magnetic>
-          </div>
+          </motion.div>
         </div>
 
         {/* More Content Expansion */}
-        <div className="mt-40 grid grid-cols-1 md:grid-cols-3 gap-16 pt-20 border-t border-white/5">
+        <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-16 pt-16 border-t border-white/5">
           <div className="space-y-6">
             <h4 className="text-white font-bold uppercase tracking-widest text-xs font-mono">Jam Operasional</h4>
             <ul className="space-y-2 text-zinc-500 text-sm">
@@ -83,7 +124,7 @@ export function ContactSection() {
           </div>
         </div>
 
-        <div className="mt-40 pt-20 flex flex-col md:flex-row justify-between items-center gap-8">
+        <div className="mt-20 pt-16 flex flex-col md:flex-row justify-between items-center gap-8">
            <div className="flex flex-col items-center md:items-start gap-4">
               <span className="text-[10px] font-mono text-zinc-600 uppercase tracking-[0.5em]">Tersedia Global</span>
               <div className="flex items-center gap-2">

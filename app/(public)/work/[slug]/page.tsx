@@ -30,31 +30,9 @@ function ProjectGallery({ images, title }: { images: string[]; title: string }) 
       transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
       className="relative w-full mb-32"
     >
-      {/* Image Container */}
-      <div className="relative w-full rounded-2xl overflow-hidden border border-white/5 bg-zinc-900/50">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentIndex}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="w-full h-full relative"
-          >
-            <img 
-              src={images[currentIndex]} 
-              alt={`${title} - Gambar ${currentIndex + 1}`} 
-              className="w-full h-auto block select-none"
-              loading="lazy"
-            />
-            <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black to-transparent opacity-60 pointer-events-none" />
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
       {/* Navigation Controls - Only show if multiple images */}
       {hasMultiple && (
-        <div className="flex items-center justify-center gap-6 mt-8">
+        <div className="flex items-center justify-center gap-6 mb-8">
           {/* Previous Button */}
           <Magnetic strength={0.2}>
             <button
@@ -96,6 +74,28 @@ function ProjectGallery({ images, title }: { images: string[]; title: string }) 
           </span>
         </div>
       )}
+
+      {/* Image Container */}
+      <div className="relative w-full rounded-2xl overflow-hidden border border-white/5 bg-zinc-900/50">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentIndex}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            className="w-full h-full relative"
+          >
+            <img 
+              src={images[currentIndex]} 
+              alt={`${title} - Gambar ${currentIndex + 1}`} 
+              className="w-full h-auto block select-none"
+              loading="lazy"
+            />
+            <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black to-transparent opacity-60 pointer-events-none" />
+          </motion.div>
+        </AnimatePresence>
+      </div>
     </motion.div>
   );
 }
@@ -198,7 +198,7 @@ export default function ProjectPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-32">
            <div className="p-12 border border-white/5 rounded-3xl bg-white/[0.02] hover:bg-white/[0.04] transition-colors group">
               <Cpu className="text-zinc-600 mb-8 group-hover:text-white transition-colors" size={32} />
-              <h3 className="text-white font-bold text-xl mb-4">Metodologi</h3>
+              <h3 className="text-white font-bold text-xl mb-4">Technology Stacks</h3>
               <div className="flex flex-wrap gap-2">
                 {project.tech.map((t, i) => (
                   <span key={i} className="text-zinc-500 font-mono text-[10px] uppercase tracking-widest bg-white/5 px-3 py-1 rounded-full">{t}</span>
@@ -208,26 +208,15 @@ export default function ProjectPage() {
            
            <div className="p-12 border border-white/5 rounded-3xl bg-white/[0.02] hover:bg-white/[0.04] transition-colors group">
               <Layout className="text-zinc-600 mb-8 group-hover:text-white transition-colors" size={32} />
-              <h3 className="text-white font-bold text-xl mb-4">Kualitas Output</h3>
+              <h3 className="text-white font-bold text-xl mb-4">Hasil Akhir</h3>
               <p className="text-zinc-500 text-sm leading-relaxed">Kode bersih (Clean Code), dokumentasi lengkap, dan hasil yang siap dipresentasikan di hadapan penguji UKK.</p>
            </div>
 
            <div className="p-12 border border-white/5 rounded-3xl bg-white/[0.02] hover:bg-white/[0.04] transition-colors group">
               <Boxes className="text-zinc-600 mb-8 group-hover:text-white transition-colors" size={32} />
-              <h3 className="text-white font-bold text-xl mb-4">Layanan Purna Tugas</h3>
-              <p className="text-zinc-500 text-sm leading-relaxed">Gratis konsultasi dan revisi ringan hingga tugas benar-benar dinyatakan lulus atau diterima oleh dosen/guru.</p>
+              <h3 className="text-white font-bold text-xl mb-4">Layanan Lainnya</h3>
+              <p className="text-zinc-500 text-sm leading-relaxed">Gratis konsultasi dan revisi ringan hingga tugas benar-benar dinyatakan lulus atau diterima oleh penguji.</p>
            </div>
-        </div>
-
-        {/* Content Section */}
-        <div className="max-w-3xl mx-auto space-y-12">
-            <h2 className="text-3xl font-bold text-white tracking-tight">Detail Pengerjaan</h2>
-            <p className="text-zinc-400 text-lg leading-relaxed">
-              Dalam pengerjaan {project.title}, JokiTugas.inc berfokus pada ketepatan logika dan pemenuhan kriteria penilaian. Kami memahami bahwa setiap kata dalam modul tugas sangat krusial, itulah sebabnya kami melakukan audit mendalam sebelum menyerahkan hasil akhir.
-            </p>
-            <p className="text-zinc-400 text-lg leading-relaxed">
-              Tantangan yang sering dihadapi adalah integrasi sistem yang kompleks dalam waktu singkat. Tim kami menggunakan boilerplate yang sudah teruji untuk mempercepat proses tanpa mengurangi kualitas esensial dari tugas tersebut.
-            </p>
         </div>
       </div>
     </div>

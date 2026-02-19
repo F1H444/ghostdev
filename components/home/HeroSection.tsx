@@ -5,6 +5,7 @@ import { useRef } from 'react';
 import { Magnetic } from '@/components/ui/Magnetic';
 import { ArrowDown } from 'lucide-react';
 import { Counter } from '@/components/ui/Counter';
+import { useLoading } from '@/components/providers/LoadingProvider';
 
 const heading = "GHOSTDEV";
 const characters = heading.split("");
@@ -14,8 +15,8 @@ const containerVariants: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.05,
-      delayChildren: 0.5,
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
     }
   }
 };
@@ -26,7 +27,7 @@ const charVariants: Variants = {
     y: 0,
     opacity: 1,
     transition: {
-      duration: 1.5,
+      duration: 1.2,
       ease: [0.16, 1, 0.3, 1]
     }
   }
@@ -34,9 +35,10 @@ const charVariants: Variants = {
 
 export function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { isLoading } = useLoading();
   
   return (
-    <section ref={containerRef} className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden py-20 px-0 bg-black">
+    <section ref={containerRef} className="relative min-h-[100vh] flex flex-col items-center justify-center overflow-hidden py-24 px-0 bg-black">
       
       {/* Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
@@ -46,8 +48,8 @@ export function HeroSection() {
         {/* Badge */}
         <motion.div
            initial={{ opacity: 0, y: 20 }}
-           animate={{ opacity: 1, y: 0 }}
-           transition={{ delay: 0.2 }}
+           animate={isLoading ? { opacity: 0, y: 20 } : { opacity: 1, y: 0 }}
+           transition={{ duration: 0.8, ease: "easeOut" }}
            className="mb-8 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-xs font-medium text-zinc-300"
         >
           GASS JOKI SEKARANG 
@@ -56,7 +58,7 @@ export function HeroSection() {
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
+          animate={isLoading ? "hidden" : "visible"}
           className="flex justify-center overflow-hidden mb-6 whitespace-nowrap relative group cursor-default"
         >
           {characters.map((char, i) => (
@@ -73,8 +75,8 @@ export function HeroSection() {
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 1 }}
+          animate={isLoading ? { opacity: 0, y: 30 } : { opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeOut", delay: 1 }}
           className="max-w-2xl space-y-10 flex flex-col items-center"
         >
           <h2 className="text-xl md:text-2xl text-zinc-400 font-light tracking-wide leading-relaxed">
@@ -106,11 +108,15 @@ export function HeroSection() {
           {/* Stats */}
           <div className="grid grid-cols-3 gap-8 md:gap-16 pt-8 border-t border-white/5 mt-8 w-full">
             <div className="flex flex-col items-center">
-              <span className="text-2xl font-bold text-white"><Counter target={50} />+</span>
-              <span className="text-xs text-zinc-500 uppercase tracking-wider mt-1">Proyek</span>
+              <span className="text-2xl font-bold text-white">UKK</span>
+              <span className="text-xs text-zinc-500 uppercase tracking-wider mt-1">Spesialis</span>
             </div>
             <div className="flex flex-col items-center">
-              <span className="text-2xl font-bold text-white"><Counter target={100} />%</span>
+              <span className="text-2xl font-bold text-white">
+                {!isLoading && <Counter target={100} />}
+                {isLoading && "0"}
+                %
+              </span>
               <span className="text-xs text-zinc-500 uppercase tracking-wider mt-1">Kepuasan</span>
             </div>
             <div className="flex flex-col items-center">
@@ -123,7 +129,7 @@ export function HeroSection() {
 
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        animate={isLoading ? { opacity: 0 } : { opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50"
       >

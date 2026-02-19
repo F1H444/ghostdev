@@ -7,19 +7,22 @@ import { cn } from '@/lib/utils';
 import { Magnetic } from '@/components/ui/Magnetic';
 
 const navItems = [
-  { name: 'Tentang', href: '#about' }, // About
-  { name: 'Karya', href: '#work' },    // Work
-  { name: 'Kontak', href: '#contact' }, // Contact
+  { name: 'Tentang', href: '/#about' }, 
+  { name: 'Karya', href: '/#work' },    
+  { name: 'Kontak', href: '/#contact' }, 
 ];
 
 export function Navbar() {
   const pathname = usePathname();
 
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, href: string) => {
-    e.preventDefault();
-    const targetId = href.replace('#', '');
+    const targetId = href.replace('/#', '').replace('#', '');
     const elem = document.getElementById(targetId);
-    elem?.scrollIntoView({ behavior: 'smooth' });
+    
+    if (elem && pathname === '/') {
+      e.preventDefault();
+      elem.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (

@@ -1,7 +1,13 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform, useVelocity, useSpring, useAnimationFrame, useMotionValue } from 'framer-motion';
+import { useRef, useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
+
+const wrap = (min: number, max: number, v: number) => {
+  const rangeSize = max - min;
+  return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min;
+};
 
 export function InfiniteMarquee() {
   const items = [
@@ -10,37 +16,48 @@ export function InfiniteMarquee() {
     { text: 'TECH SOLUTIONS', color: 'text-cyan-500' },
     { text: 'UKK & TUGAS', color: 'text-yellow-500' },
     { text: 'SECURITY LOGIC', color: 'text-green-500' },
+    { text: 'DATABASE ARCH', color: 'text-blue-400' },
+    { text: 'UI/UX MASTERY', color: 'text-purple-400' },
   ];
 
+  const baseX = useMotionValue(0);
+  
+  // Constant automatic scroll
+  useAnimationFrame((t, delta) => {
+    const moveBy = -1.5 * (delta / 1000); // Ultra-crawl speed for max readability
+    baseX.set(baseX.get() + moveBy);
+  });
+
+  const x = useTransform(baseX, (v) => `${wrap(-20, -45, v)}%`);
+
   return (
-    <div className="relative w-full overflow-hidden py-24 bg-black border-y border-white/5 skew-y-[-1deg]">
-      <div className="flex whitespace-nowrap">
-        <motion.div
-          animate={{ x: [0, -2000] }}
-          transition={{
-            repeat: Infinity,
-            ease: "linear",
-            duration: 40,
-          }}
-          className="flex gap-20 items-center"
-        >
-          {[...items, ...items, ...items, ...items, ...items].map((item, index) => (
-            <div key={index} className="flex items-center gap-20">
-              <span className={cn(
-                "text-7xl md:text-[12vw] font-black uppercase tracking-tighter transition-all duration-700 hover:scale-110 cursor-default",
-                item.color
-              )}>
-                {item.text}
-              </span>
-              <div className="w-4 h-4 rounded-full bg-white/10" />
+    <div className="relative w-full overflow-hidden py-32 bg-black border-y border-white/5 skew-y-[-1deg] z-20">
+      <div className="flex whitespace-nowrap will-change-transform">
+        <motion.div style={{ x }} className="flex gap-20 items-center">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="flex gap-20 items-center">
+              {items.map((item, index) => (
+                <div key={index} className="flex items-center gap-20">
+                  <span 
+                    className={cn(
+                      "text-8xl md:text-[15vw] font-black uppercase tracking-tighter transition-all duration-700 cursor-default select-none",
+                      item.color,
+                      "hover:scale-105 hover:text-white"
+                    )}
+                  >
+                    {item.text}
+                  </span>
+                  <div className="w-12 h-[1px] bg-white/10" />
+                </div>
+              ))}
             </div>
           ))}
         </motion.div>
       </div>
       
-      {/* Decorative Gradients for depth */}
-      <div className="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-black to-transparent z-10" />
-      <div className="absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-black to-transparent z-10" />
+      {/* Decorative Gradients */}
+      <div className="absolute inset-y-0 left-0 w-[20%] bg-gradient-to-r from-black via-black/80 to-transparent z-10 pointer-events-none" />
+      <div className="absolute inset-y-0 right-0 w-[20%] bg-gradient-to-l from-black via-black/80 to-transparent z-10 pointer-events-none" />
     </div>
   );
 }

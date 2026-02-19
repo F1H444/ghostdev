@@ -31,6 +31,9 @@ export const metadata: Metadata = {
   },
 };
 
+import { Preloader } from "@/components/ui/Preloader";
+import { LoadingProvider } from "@/components/providers/LoadingProvider";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -61,7 +64,10 @@ export default function RootLayout({
         />
       </head>
       <body>
-        {children}
+        <LoadingProvider>
+          <Preloader />
+          {children}
+        </LoadingProvider>
       </body>
     </html>
   );

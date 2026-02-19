@@ -1,85 +1,120 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { Layout, Shield, Zap, Globe, Cpu, Smartphone } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 const services = [
   {
-    title: "Pengembangan Web",
-    description: "Membangun ekosistem digital yang cepat, aman, dan memukau klien Anda.",
+    title: "Pemrograman Web",
+    description: "Pengerjaan proyek website dengan fitur lengkap sesuai modul UKK, dijamin fungsional dan responsif.",
     icon: Globe,
-    className: "md:col-span-2 md:row-span-1 bg-blue-600/10 border-blue-500/20",
+    className: "lg:col-span-2 md:col-span-2 bg-blue-600/10 border-blue-500/20",
     color: "text-blue-500"
   },
   {
-    title: "UKK & Tugas",
-    description: "Solusi tuntas untuk tugas pemrograman dan proyek UKK.",
+    title: "Jaminan Lulus UKK",
+    description: "Pendampingan proyek dari perencanaan hingga demo aplikasi. Fokus pada kriteria penilaian penguji.",
     icon: Zap,
-    className: "md:col-span-1 md:row-span-1 bg-zinc-900/50 border-white/5",
+    className: "lg:col-span-1 md:col-span-1 bg-zinc-900/50 border-white/5",
     color: "text-yellow-500"
   },
   {
-    title: "Desain Aplikasi",
-    description: "Antarmuka modern yang memprioritaskan pengalaman pengguna.",
+    title: "UI/UX & Desain",
+    description: "Tampilan antarmuka yang modern dan profesional untuk meningkatkan nilai presentasi.",
     icon: Layout,
-    className: "md:col-span-1 md:row-span-2 bg-zinc-900/50 border-white/5",
+    className: "lg:col-span-1 md:col-span-1 bg-zinc-900/50 border-white/5",
     color: "text-purple-500"
   },
   {
-    title: "Logika Keamanan",
-    description: "Keamanan tingkat lanjut untuk infrastruktur digital Anda.",
+    title: "Keamanan Sistem",
+    description: "Implementasi proteksi data dan autentikasi yang kuat sesuai standar keamanan web modern.",
     icon: Shield,
-    className: "md:col-span-1 md:row-span-1 bg-zinc-900/50 border-white/5",
+    className: "lg:col-span-1 md:col-span-1 bg-zinc-900/50 border-white/5",
     color: "text-green-500"
   },
   {
-    title: "Solusi Teknologi",
-    description: "Konsultasi teknis untuk masalah programming yang kompleks.",
+    title: "Bimbingan Teknis",
+    description: "Konsultasi intensif agar Anda siap menjawab setiap pertanyaan penguji.",
     icon: Cpu,
-    className: "md:col-span-2 md:row-span-1 bg-cyan-600/10 border-cyan-500/20",
+    className: "lg:col-span-3 md:col-span-1 bg-cyan-600/10 border-cyan-500/20",
     color: "text-cyan-500"
   }
 ];
 
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.1
+    }
+  }
+};
+
+const cardVariants: Variants = {
+  hidden: { y: 100, opacity: 0, scale: 0.95 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 1,
+      ease: [0.16, 1, 0.3, 1] as any
+    }
+  }
+};
+
 export function ServicesSection() {
   return (
-    <section id="services" className="min-h-screen flex items-center justify-center py-32 px-0 relative z-10 bg-black">
+    <section id="services" className="min-h-screen flex items-center justify-center py-20 px-0 relative z-10 bg-black">
       <div className="max-w-7xl mx-auto px-8 w-full">
-        <div className="mb-20">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="mb-16"
+        >
           <h2 className="text-xs font-mono text-zinc-600 uppercase tracking-[0.4em] mb-6">Keahlian</h2>
           <h3 className="text-4xl md:text-6xl font-bold text-white tracking-tighter">
-            Solusi All-in-One. <br /> Kualitas <span className="text-blue-500 italic">Nggak Pake Kompromi.</span>
+            Fast Results, High Grades,<br /><span className="text-blue-500 italic">Low Costs.</span>
           </h3>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
+        >
           {services.map((service, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              whileHover={{ y: -5 }}
-              className={`p-8 rounded-3xl border backdrop-blur-sm group transition-all duration-500 ${service.className}`}
+              variants={cardVariants}
+              className={cn(
+                "p-8 rounded-[2rem] border bg-zinc-900/40 flex flex-col gap-4 group relative overflow-hidden will-change-transform",
+                service.className
+              )}
             >
-              <div className="flex flex-col h-full justify-between gap-12">
-                <div className="flex items-center justify-between">
-                  <div className={`p-3 rounded-2xl bg-white/5 ${service.color}`}>
-                    <service.icon size={24} />
-                  </div>
-                  <div className="opacity-0 group-hover:opacity-100 transition-opacity">
-                     <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-                  </div>
-                </div>
-                <div>
-                  <h4 className="text-xl font-bold text-white mb-4">{service.title}</h4>
-                  <p className="text-zinc-500 text-sm leading-relaxed max-w-xs">{service.description}</p>
-                </div>
+              <div className={cn("w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center transition-transform duration-500 group-hover:scale-110", service.color)}>
+                <service.icon size={24} />
               </div>
+              
+              <div className="space-y-3">
+                <h4 className="text-2xl font-bold text-white tracking-tight">{service.title}</h4>
+                <p className="text-zinc-500 text-sm leading-relaxed max-w-[280px]">
+                  {service.description}
+                </p>
+              </div>
+
+              {/* Decorative gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent pointer-events-none" />
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

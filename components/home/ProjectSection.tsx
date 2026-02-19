@@ -80,6 +80,30 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   );
 }
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.1
+    }
+  }
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, scale: 0.9, y: 40 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: {
+      duration: 1,
+      ease: [0.16, 1, 0.3, 1] as any
+    }
+  }
+};
+
 export function ProjectSection() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [projects, setProjects] = useState<Project[]>(staticProjects);
@@ -97,29 +121,45 @@ export function ProjectSection() {
   const visibleProjects = isExpanded ? projects : projects.slice(0, 4);
 
   return (
-    <section id="work" className="relative min-h-screen py-32 bg-black z-10">
-      <div className="max-w-7xl mx-auto px-8 relative">
+    <section id="work" className="relative min-h-screen py-24 bg-black z-10">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 relative">
         
         {/* Section Header */}
-        <div className="mb-24 flex flex-col items-center text-center">
-          <h2 className="text-xs font-mono text-zinc-600 uppercase tracking-[0.6em] mb-6">Koleksi Karya Jagoan</h2>
-          <h3 className="text-5xl md:text-7xl font-bold text-white tracking-tighter leading-tight">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-16 md:mb-24 flex flex-col items-center text-center"
+        >
+          <h2 className="text-xs font-mono text-zinc-600 uppercase tracking-[0.6em] mb-4 md:mb-6">Koleksi Karya Jagoan</h2>
+          <h3 className="text-4xl md:text-7xl font-bold text-white tracking-tighter leading-tight">
             KARYA <span className="text-blue-500">TERPILIH.</span>
           </h3>
-        </div>
+        </motion.div>
 
         {/* Standard Project Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12"
+        >
           {visibleProjects.map((project, i) => (
-            <ProjectCard key={project.id} project={project} index={i} />
+            <motion.div key={project.id} variants={cardVariants}>
+              <ProjectCard project={project} index={i} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        {/* View All CTA - Relocated here */}
+        {/* View All CTA */}
         <div className="mt-20 flex justify-center">
            {!isExpanded && (
              <Magnetic strength={0.3}>
-               <button 
+               <motion.button 
+                 initial={{ opacity: 0 }}
+                 whileInView={{ opacity: 1 }}
+                 transition={{ delay: 1 }}
                  onClick={() => setIsExpanded(true)}
                  className="flex flex-col items-center gap-6 group"
                >
@@ -131,21 +171,33 @@ export function ProjectSection() {
                  >
                    <ChevronDown size={18} />
                  </motion.div>
-               </button>
+               </motion.button>
              </Magnetic>
            )}
         </div>
 
         {/* Workflow / Steps */}
         <div className="mt-40 pt-40 border-t border-white/5">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12">
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12"
+          >
             {[
               { id: '01', title: 'Tanya-Tanya Dulu' },
               { id: '02', title: 'Mulai Bangun' },
               { id: '03', title: 'Poles & Rapikan' },
               { id: '04', title: 'Beres & Kirim' }
             ].map((step, idx) => (
-              <div key={idx}>
+              <motion.div 
+                key={idx}
+                variants={{
+                  hidden: { opacity: 0, x: -20 },
+                  visible: { opacity: 1, x: 0, transition: { duration: 0.8 } }
+                }}
+              >
                 <span className="text-zinc-900 font-black text-6xl mb-6 block leading-none">{step.id}</span>
                 <h4 className="font-bold text-white uppercase tracking-widest text-lg mb-4">{step.title}</h4>
                 <p className="text-zinc-500 text-sm leading-relaxed">
@@ -154,11 +206,10 @@ export function ProjectSection() {
                   {idx === 2 && "Kami melakukan pengujian menyeluruh untuk memastikan semua fitur berjalan sempurna."}
                   {idx === 3 && "Penyerahan hasil akhir beserta dokumentasi lengkap untuk kemudahan Anda."}
                 </p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
-
       </div>
     </section>
   );

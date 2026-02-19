@@ -55,25 +55,39 @@ export function TestimonialsSection() {
   };
 
   return (
-    <section id="testimonials" className="min-h-screen py-32 flex items-center bg-black relative z-10 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-8 w-full">
-        <div className="mb-24 flex flex-col md:flex-row md:items-end justify-between gap-12">
+    <section id="testimonials" className="min-h-screen py-24 flex items-center bg-black relative z-10 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 w-full">
+        <div className="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8 md:gap-12">
           <div className="max-w-2xl">
-            <h2 className="text-xs font-mono text-zinc-600 uppercase tracking-[0.4em] mb-6">Cerita Klien</h2>
-            <h3 className="text-5xl md:text-7xl font-bold text-white tracking-tighter leading-none">
+            <h2 className="text-xs font-mono text-zinc-600 uppercase tracking-[0.4em] mb-4 md:mb-6">Cerita Klien</h2>
+            <h3 className="text-4xl md:text-7xl font-bold text-white tracking-tighter leading-none">
               Apa Kata Mereka? <br /> <span className="text-blue-500 italic">Bukti Nyata</span> Kualitas.
             </h3>
           </div>
           <button
             onClick={() => setShowModal(true)}
-            className="h-14 px-8 flex items-center gap-3 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:border-white/30 transition-all text-xs font-bold uppercase tracking-widest text-zinc-300 hover:text-white group"
+            className="h-12 md:h-14 px-6 md:px-8 flex items-center gap-3 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:border-white/30 transition-all text-xs font-bold uppercase tracking-widest text-zinc-300 hover:text-white group w-fit"
           >
             <Plus className="w-4 h-4 group-hover:rotate-90 transition-transform" />
             <span>Tulis Ulasan</span>
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.15
+              }
+            }
+          }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+        >
           <AnimatePresence mode="popLayout">
             {isLoading ? (
               [...Array(3)].map((_, i) => (
@@ -83,12 +97,22 @@ export function TestimonialsSection() {
               dynamicReviews.map((review, i) => (
                 <motion.div
                   key={review.id || i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
+                  variants={{
+                    hidden: { opacity: 0, y: 40, rotateX: 10, rotateY: 10 },
+                    visible: { 
+                      opacity: 1, 
+                      y: 0, 
+                      rotateX: 0, 
+                      rotateY: 0,
+                      transition: {
+                        duration: 1,
+                        ease: [0.16, 1, 0.3, 1]
+                      }
+                    }
+                  }}
+                  whileHover={{ y: -10, transition: { duration: 0.3 } }}
                   className={cn(
-                    "p-10 rounded-[2.5rem] bg-zinc-900/40 border backdrop-blur-sm flex flex-col justify-between h-full transition-all duration-500",
+                    "p-10 rounded-[2.5rem] bg-zinc-900/60 border flex flex-col justify-between h-full transition-all duration-500 will-change-transform",
                     [
                       "border-white/5 hover:border-green-500/30",
                       "border-white/5 hover:border-purple-500/30",
@@ -107,7 +131,7 @@ export function TestimonialsSection() {
               ))
             )}
           </AnimatePresence>
-        </div>
+        </motion.div>
       </div>
 
       {/* Submission Modal */}
