@@ -77,7 +77,7 @@ export function ServicesSection() {
           transition={{ duration: 0.8 }}
           className="mb-16"
         >
-          <h2 className="text-xs font-mono text-zinc-600 uppercase tracking-[0.4em] mb-6">Keahlian</h2>
+          <h2 className="text-xs font-mono text-zinc-600 uppercase tracking-[0.4em] mb-6">Keuntungan</h2>
           <h3 className="text-4xl md:text-6xl font-bold text-white tracking-tighter">
             Fast Results, High Grades,<br /><span className="text-blue-500 italic">Low Costs.</span>
           </h3>

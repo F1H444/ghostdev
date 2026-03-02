@@ -51,7 +51,7 @@ export function AboutSection() {
           style={{ y: footerY, opacity: footerOpacity }}
           className="text-zinc-500 text-lg md:text-xl leading-relaxed max-w-2xl text-center mt-20 font-medium"
         >
-          Kita gak cuma sekedar bantuin tugas, tapi kita mastiin setiap baris kodenya bisa kamu pahami dan jelasin ke penguji. GhostDev ada buat bikin perjalanan akademismu jauh lebih santai.
+          gak cuma sekedar bantuin tugas, tapi kita mastiin setiap baris kodenya bisa kamu pahami dan jelasin ke penguji. GhostDev ada buat bikin perjalanan akademismu jauh lebih santai.
         </motion.p>
       </div>
     </section>

@@ -20,7 +20,7 @@ export function ContactSection() {
               viewport={{ once: true }}
               className="text-xs font-mono text-zinc-600 uppercase tracking-[0.4em] mb-10"
             >
-              Koneksi
+              Hubungi
             </motion.h2>
             
             <div className="overflow-hidden flex flex-wrap mb-8 md:mb-12">

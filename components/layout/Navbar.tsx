@@ -8,7 +8,7 @@ import { Magnetic } from '@/components/ui/Magnetic';
 
 const navItems = [
   { name: 'Tentang', href: '/#about' }, 
-  { name: 'Karya', href: '/#work' },    
+  { name: 'Project', href: '/#work' },    
   { name: 'Kontak', href: '/#contact' }, 
 ];
 

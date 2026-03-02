@@ -1,14 +1,14 @@
-# GhostDev | Agensi Digital Kreatif
+# GhostDev | Joki
 
 <img width="1919" height="984" alt="image" src="https://github.com/user-attachments/assets/0ce371d8-75d6-476c-8926-2345c40f8224" />
 
 
 
-> **"Kami merancang pengalaman digital yang menghantui kompetisi."**
+> **"Merancang sebuah website untuk joki ukk."**
 
-GhostDev adalah agensi digital modern yang berfokus pada pembuatan website berperforma tinggi, aplikasi elit, dan pengalaman pengguna yang memukau. Dibangun dengan teknologi terkini untuk memastikan kecepatan, keamanan, dan desain yang responsif.
+GhostDev adalah sebuah website joki ukk yang cepat dan terpecaya
 
-## ✨ Fitur Utama
+## Fitur Utama
 
 - **⚡ Performa Tinggi**: Dibangun di atas [Next.js 15](https://nextjs.org/) untuk kecepatan optimal dan SEO yang superior.
 - **🎨 Desain Modern**: Styling canggih menggunakan **Tailwind CSS v4** dengan tema gelap yang elegan.
@@ -17,7 +17,7 @@ GhostDev adalah agensi digital modern yang berfokus pada pembuatan website berpe
 - **🔐 Admin Dashboard**: Panel admin yang aman untuk pengelolaan konten dan data.
 - **🗄️ Backend Supabase**: Integrasi database dan autentikasi yang kuat dengan [Supabase](https://supabase.com/).
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 Project ini menggunakan kombinasi teknologi terbaik saat ini:
 
@@ -32,7 +32,7 @@ Project ini menggunakan kombinasi teknologi terbaik saat ini:
 | **Backend**    | [Supabase](https://supabase.com/)               |
 | **Font**       | [Geist](https://vercel.com/font)                |
 
-## 🚀 Memulai (Getting Started)
+## Memulai (Getting Started)
 
 Ikuti langkah-langkah berikut untuk menjalankan project di lokal komputer Anda.
 
@@ -98,12 +98,8 @@ ghostdev/
 └── ...config files       # Konfigurasi (Tailwind, TypeScript, Next.js)
 ```
 
-## 🤝 Kontribusi
+## Kontribusi
 
 Kontribusi selalu diterima! Silakan buat issue atau pull request untuk perbaikan atau fitur baru.
 
 ---
-
-<p align="center">
-  Dibuat dengan ❤️ oleh Tim <b>GhostDev</b>
-</p>

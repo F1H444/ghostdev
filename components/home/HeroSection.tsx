@@ -92,7 +92,7 @@ export function HeroSection() {
                 rel="noopener noreferrer"
                 className="group relative h-14 px-10 flex items-center justify-center overflow-hidden bg-white text-black rounded-full transition-all hover:scale-105"
               >
-                <span className="relative z-10 text-xs font-bold uppercase tracking-widest">Mulai Bangun Proyek</span>
+                <span className="relative z-10 text-xs font-bold uppercase tracking-widest">JOKI SEKARANG!!</span>
               </a>
             </Magnetic>
             <Magnetic strength={0.3}>
@@ -100,7 +100,7 @@ export function HeroSection() {
                 href="#work" 
                 className="group relative h-14 px-10 flex items-center justify-center overflow-hidden border border-white/10 bg-white/5 backdrop-blur-sm rounded-full transition-all hover:bg-white/10 hover:border-white/20"
               >
-                <span className="relative z-10 text-xs font-bold uppercase tracking-widest text-zinc-300 group-hover:text-white transition-all">Lihat Karya Kami</span>
+                <span className="relative z-10 text-xs font-bold uppercase tracking-widest text-zinc-300 group-hover:text-white transition-all">Lihat Project</span>
               </a>
             </Magnetic>
           </div>

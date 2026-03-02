@@ -23,7 +23,7 @@ export function Footer() {
             <h3 className="text-[10px] font-mono text-zinc-600 uppercase tracking-[0.4em] mb-8">Navigasi</h3>
             <ul className="flex flex-col gap-4">
               <li><Link href="/about" className="text-zinc-400 hover:text-white transition-colors text-sm">Tentang</Link></li>
-              <li><Link href="/work" className="text-zinc-400 hover:text-white transition-colors text-sm">Karya</Link></li>
+              <li><Link href="/work" className="text-zinc-400 hover:text-white transition-colors text-sm">Project</Link></li>
               <li><Link href="/contact" className="text-zinc-400 hover:text-white transition-colors text-sm">Kontak</Link></li>
             </ul>
           </div>
