@@ -55,7 +55,12 @@ export async function middleware(request: NextRequest) {
   )
 
   // This will refresh the session if it's expired
-  await supabase.auth.getUser()
+  const { data: { user } } = await supabase.auth.getUser()
+
+  // Melindungi rute /admin, redirect ke /login jika tidak ada sesi user
+  if (request.nextUrl.pathname.startsWith('/admin') && !user) {
+    return NextResponse.redirect(new URL('/login', request.url))
+  }
 
   // Existing CSP and security headers logic follows...
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
